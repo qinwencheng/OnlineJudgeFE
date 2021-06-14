@@ -14,7 +14,10 @@ import {
   ResetPassword,
   SubmissionDetails,
   SubmissionList,
-  UserHome
+  UserHome,
+  // new
+  Road,
+  RoadList
 } from '../views'
 
 import * as Contest from '@oj/views/contest'
@@ -56,6 +59,19 @@ export default [
     path: '/problem/:problemID',
     meta: {title: 'Problem Details'},
     component: Problem
+  },
+  // new
+  {
+    name: 'road-list',
+    path: '/road',
+    meta: {title: 'Road List'},
+    component: RoadList
+  },
+  {
+    name: 'road-details',
+    path: '/road/:roadID',
+    meta: {title: 'Road Details'},
+    component: Road
   },
   {
     name: 'submission-list',

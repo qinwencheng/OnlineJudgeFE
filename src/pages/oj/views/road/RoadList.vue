@@ -2,9 +2,9 @@
   <Row type="flex" :gutter="18">
     <Col :span=19>
     <Panel shadow>
-      <div slot="title">{{$t('m.Problem_List')}}</div>
+      <div slot="title">{{$t('成长之路')}}</div>
       <div slot="extra">
-        <ul class="filter">
+        <!-- <ul class="filter">
           <li>
             <Dropdown @on-click="filterByDifficulty">
               <span>{{query.difficulty === '' ? this.$i18n.t('m.Difficulty') : this.$i18n.t('m.' + query.difficulty)}}
@@ -37,7 +37,7 @@
               {{$t('m.Reset')}}
             </Button>
           </li>
-        </ul>
+        </ul> -->
       </div>
       <Table style="width: 100%; font-size: 16px;"
              :columns="problemTableColumns"
@@ -45,12 +45,12 @@
              :loading="loadings.table"
              disabled-hover></Table>
     </Panel>
-    <Pagination
-      :total="total" :page-size.sync="query.limit" @on-change="pushRouter" @on-page-size-change="pushRouter" :current.sync="query.page" :show-sizer="true"></Pagination>
+    <!-- <Pagination
+      :total="total" :page-size.sync="query.limit" @on-change="pushRouter" @on-page-size-change="pushRouter" :current.sync="query.page" :show-sizer="true"></Pagination> -->
 
     </Col>
 
-    <Col :span="5">
+    <!-- <Col :span="5">
     <Panel :padding="10">
       <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
       <Button v-for="tag in tagList"
@@ -68,7 +68,7 @@
       </Button>
     </Panel>
     <Spin v-if="loadings.tag" fix size="large"></Spin>
-    </Col>
+    </Col> -->
   </Row>
 </template>
 
@@ -76,12 +76,12 @@
   import { mapGetters } from 'vuex'
   import api from '@oj/api'
   import utils from '@/utils/utils'
-  import { ProblemMixin } from '@oj/components/mixins'
+  import { RoadMixin } from '@oj/components/mixins'
   import Pagination from '@oj/components/Pagination'
 
   export default {
     name: 'ProblemList',
-    mixins: [ProblemMixin],
+    mixins: [RoadMixin],
     components: {
       Pagination
     },
@@ -101,7 +101,7 @@
                 },
                 on: {
                   click: () => {
-                    this.$router.push({name: 'problem-details', params: {problemID: params.row._id}})
+                    this.$router.push({name: 'road-details', params: {roadID: window.btoa(params.row._id)}})
                   }
                 },
                 style: {
@@ -121,7 +121,11 @@
                 },
                 on: {
                   click: () => {
-                    this.$router.push({name: 'problem-details', params: {problemID: params.row._id}})
+                    // if (this.limit === 20) {
+                    //   this.$error(this.$i18n.t('m.Code_can_not_be_empty'))
+                    //   return
+                    // }
+                    this.$router.push({name: 'road-details', params: {roadID: window.btoa(params.row._id)}})
                   }
                 },
                 style: {
@@ -132,34 +136,10 @@
                 }
               }, params.row.title)
             }
-          },
-          {
-            title: this.$i18n.t('m.Level'),
-            render: (h, params) => {
-              let t = params.row.difficulty
-              let color = 'blue'
-              if (t === 'Low') color = 'green'
-              else if (t === 'High') color = 'yellow'
-              return h('Tag', {
-                props: {
-                  color: color
-                }
-              }, this.$i18n.t('m.' + params.row.difficulty))
-            }
-          },
-          {
-            title: this.$i18n.t('m.Total'),
-            key: 'submission_number'
-          },
-          {
-            title: this.$i18n.t('m.AC_Rate'),
-            render: (h, params) => {
-              return h('span', this.getACRate(params.row.accepted_number, params.row.submission_number))
-            }
           }
         ],
         problemList: [],
-        limit: 20,
+        limit: 100,
         total: 0,
         loadings: {
           table: true,
@@ -171,7 +151,7 @@
           difficulty: '',
           tag: '',
           page: 1,
-          limit: 10
+          limit: 100
         }
       }
     },
@@ -182,22 +162,23 @@
       init (simulate = false) {
         this.routeName = this.$route.name
         let query = this.$route.query
+        this.query.tag = ''
         this.query.difficulty = query.difficulty || ''
         this.query.keyword = query.keyword || ''
-        this.query.tag = query.tag || ''
         this.query.page = parseInt(query.page) || 1
         if (this.query.page < 1) {
           this.query.page = 1
         }
-        this.query.limit = parseInt(query.limit) || 10
-        if (!simulate) {
-          this.getTagList()
-        }
+        this.query.limit = parseInt(query.limit) || 100
+        // if (!simulate) {
+        //   this.getTagList()
+        // }
         this.getProblemList()
+        // this.filterByTag('NOIP提高组')
       },
       pushRouter () {
         this.$router.push({
-          name: 'problem-list',
+          name: 'road-list',
           query: utils.filterEmptyValue(this.query)
         })
       },
@@ -206,10 +187,10 @@
         this.loadings.table = true
         api.getProblemList(offset, this.limit, this.query).then(res => {
           this.loadings.table = false
-          this.total = res.data.data.total
-          this.problemList = res.data.data.results
+          // this.total = res.data.data.total
+          this.problemList = this.filterByAccpet(res.data.data.results)
           if (this.isAuthenticated) {
-            this.addStatusColumn(this.problemTableColumns, res.data.data.results)
+            this.addStatusColumn(this.problemTableColumns, this.problemList)
           }
         }, res => {
           this.loadings.table = false
@@ -232,6 +213,23 @@
         this.query.difficulty = difficulty
         this.query.page = 1
         this.pushRouter()
+      },
+      filterByAccpet (results) {
+        var ans = []
+        var preS = 0
+        var endFlag = 0
+        results.forEach(element => {
+          if (element.my_status === 0 && endFlag === 0) {
+            preS = element.my_status
+            ans.push(element)
+          }
+          if (preS === 0 && element.my_status === null && endFlag === 0) {
+            ans.push(element)
+            endFlag = 1
+          }
+        })
+        // console.log(ans)
+        return ans
       },
       filterByKeyword () {
         this.query.page = 1
@@ -260,12 +258,12 @@
         }
       },
       onReset () {
-        this.$router.push({name: 'problem-list'})
+        this.$router.push({name: 'road-list'})
       },
       pickone () {
         api.pickone().then(res => {
           this.$success('Good Luck')
-          this.$router.push({name: 'problem-details', params: {problemID: res.data.data}})
+          this.$router.push({name: 'road-details', params: {problemID: res.data.data}})
         })
       }
     },

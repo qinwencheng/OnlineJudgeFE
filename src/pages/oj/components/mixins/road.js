@@ -32,7 +32,7 @@ export default {
           }
           return h('Icon', {
             props: {
-              type: status === 0 ? 'checkmark-round' : 'minus-round',
+              type: status === 0 ? 'minus-round' : 'minus-round',
               size: '16'
             },
             style: {

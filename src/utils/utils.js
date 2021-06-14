@@ -22,14 +22,30 @@ function getACRate (acCount, totalCount) {
 
 // 去掉值为空的项，返回object
 function filterEmptyValue (object) {
+  // console.log(object)
   let query = {}
   Object.keys(object).forEach(key => {
+    // if (key === 'my_status') {
+    //   console.log(object[key])
+    // }
     if (object[key] || object[key] === 0 || object[key] === false) {
       query[key] = object[key]
     }
   })
+  // console.log(query)
   return query
 }
+
+// // 去掉值为空的项，返回object
+// function filterUnAccept (object) {
+//   let query = {}
+//   Object.keys(object).forEach(key => {
+//     if (key === 'my_status') {
+//       console.log(object[key])
+//     }
+//   })
+//   return query
+// }
 
 // 按指定字符数截断添加换行，非英文字符按指定字符的半数截断
 function breakLongWords (value, length = 16) {

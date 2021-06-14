@@ -125,9 +125,10 @@ export default {
         params[element] = searchParams[element]
       }
     })
-    return ajax('problem', 'get', {
+    var temp = ajax('problem', 'get', {
       params: params
     })
+    return temp
   },
   pickone () {
     return ajax('pickone', 'get')

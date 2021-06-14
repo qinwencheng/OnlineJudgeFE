@@ -1,69 +1,25 @@
 <template>
+
   <div class="flex-container">
-    <div id="problem-main">
-      <!--problem main-->
-      <Panel :padding="40" shadow>
-        <div slot="title">{{problem.title}}</div>
-        <div id="problem-content" class="markdown-body" v-katex>
-          <p class="title">{{$t('m.Description')}}</p>
-          <p class="content" v-html=problem.description></p>
-          <!-- {{$t('m.music')}} -->
-          <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
-          <p class="content" v-html=problem.input_description></p>
-
-          <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
-          <p class="content" v-html=problem.output_description></p>
-
-          <div v-for="(sample, index) of problem.samples" :key="index">
-            <div class="flex-container sample">
-              <div class="sample-input">
-                <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}
-                  <a class="copy"
-                     v-clipboard:copy="sample.input"
-                     v-clipboard:success="onCopy"
-                     v-clipboard:error="onCopyError">
-                    <Icon type="clipboard"></Icon>
-                  </a>
-                </p>
-                <pre>{{sample.input}}</pre>
-              </div>
-              <div class="sample-output">
-                <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}</p>
-                <pre>{{sample.output}}</pre>
-              </div>
-            </div>
-          </div>
-
-          <div v-if="problem.hint">
-            <p class="title">{{$t('m.Hint')}}</p>
-            <Card dis-hover>
-              <div class="content" v-html=problem.hint></div>
-            </Card>
-          </div>
-
-          <div v-if="problem.source">
-            <p class="title">{{$t('m.Source')}}</p>
-            <p class="content">{{problem.source}}</p>
-          </div>
-
-        </div>
-      </Panel>
-      <!--problem main end-->
-      <Card :padding="20" id="submit-code" dis-hover>
+    <Card class="bookcard">
+      <Book></Book>
+    </Card>
+      <Card :padding="20" id="submit-code" dis-hover style="width: 50%;margin-top: 0px;">
         <CodeMirror :value.sync="code"
                     :languages="problem.languages"
                     :language="language"
                     :theme="theme"
                     @resetCode="onResetToTemplate"
                     @changeTheme="onChangeTheme"
-                    @changeLang="onChangeLang"></CodeMirror>
+                    @changeLang="onChangeLang"
+                    style=""></CodeMirror>
         <Row type="flex" justify="space-between">
           <Col :span="10">
             <div class="status" v-if="statusVisible">
               <template v-if="!this.contestID || (this.contestID && OIContestRealTimePermission)">
                 <span>{{$t('m.Status')}}</span>
                 <Tag type="dot" :color="submissionStatus.color" @click.native="handleRoute('/status/'+submissionId)">
-                  {{$t('m.' + submissionStatus.text.replace(/ + /g, "_"))}}
+                  {{$t('m.' + submissionStatus.text.replace(/ /g, "_"))}}
                 </Tag>
               </template>
               <template v-else-if="this.contestID && !OIContestRealTimePermission">
@@ -90,6 +46,17 @@
                 <Input v-model="captchaCode" class="captcha-code"/>
               </div>
             </template>
+
+            <Button type="warning" icon="chevron-right" @click="toNextProblem"
+                    :disabled="problem.my_status != 0"
+                    class="fl-left"
+                    :route="submissionRoute"
+                    >
+              <span v-if="problem.my_status === 0">{{$t('下一题')}}</span>
+              <span v-else>{{$t('未完成')}}</span>
+            </Button>
+
+            
             <Button type="warning" icon="edit" :loading="submitting" @click="submitCode"
                     :disabled="problemSubmitDisabled || submitted"
                     class="fl-right">
@@ -101,7 +68,7 @@
       </Card>
     </div>
 
-    <div id="right-column">
+    <!-- <div id="right-column">
       <VerticalMenu @on-click="handleRoute">
         <template v-if="this.contestID">
           <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
@@ -195,19 +162,20 @@
       <div slot="footer">
         <Button type="ghost" @click="graphVisible=false">{{$t('m.Close')}}</Button>
       </div>
-    </Modal>
+    </Modal> -->
   </div>
 </template>
 
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import {types} from '../../../../store'
-  import CodeMirror from '@oj/components/CodeMirror.vue'
+  import CodeMirror from '@oj/components/CodeMirror2.vue'
   import storage from '@/utils/storage'
   import {FormMixin} from '@oj/components/mixins'
   import {JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey} from '@/utils/constants'
   import api from '@oj/api'
   import {pie, largePie} from './chartData'
+  import Book from '@oj/components/add/Book.vue'
 
   // 只显示这些状态的图形占用
   const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8']
@@ -215,7 +183,8 @@
   export default {
     name: 'Problem',
     components: {
-      CodeMirror
+      CodeMirror,
+      Book
     },
     mixins: [FormMixin],
     data () {
@@ -228,6 +197,7 @@
         captchaSrc: '',
         contestID: '',
         problemID: '',
+        randomNumber: '',
         submitting: false,
         code: '',
         language: 'C++',
@@ -280,11 +250,13 @@
       init () {
         this.$Loading.start()
         this.contestID = this.$route.params.contestID
-        this.problemID = this.$route.params.problemID
-        let func = this.$route.name === 'problem-details' ? 'getProblem' : 'getContestProblem'
+        this.problemID = window.atob(this.$route.params.roadID)
+        console.log(this.problemID)
+        let func = this.$route.name === 'road-details' ? 'getProblem' : 'getContestProblem'
         api[func](this.problemID, this.contestID).then(res => {
           this.$Loading.finish()
           let problem = res.data.data
+          console.log(problem)
           this.changeDomTitle({title: problem.title})
           api.submissionExists(problem.id).then(res => {
             this.submissionExists = res.data.data
@@ -394,6 +366,11 @@
           })
         }
         this.refreshStatus = setTimeout(checkStatus, 2000)
+      },
+      toNextProblem () {
+        // this.$router.push({name: 'road-details', params: {roadID: parseInt(this.problemID) + 1 + 12906147}})
+        // this.$router.push({name: 'submission-list', query: {problemID: this.problemID}})
+        this.$router.push({name: 'road-details', params: {roadID: window.btoa(parseInt(this.problemID) + 1)}})
       },
       submitCode () {
         if (this.code.trim() === '') {
@@ -604,6 +581,10 @@
     float: right;
   }
 
+  .fl-left {
+    float: left;
+  }
+
   #pieChart {
     .echarts {
       height: 250px;
@@ -621,5 +602,16 @@
     width: 500px;
     height: 480px;
   }
+
+  .bookcard{
+    margin-top: 0px;
+    width:50%;
+    height:900px;
+    overflow:scroll;
+  }
+  // .CodeMirror-scroll {
+  //   min-height: 1300px;
+  //   max-height: 11000px;
+  // }
 </style>
 

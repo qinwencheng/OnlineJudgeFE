@@ -7,6 +7,9 @@ import NotFound from './general/404.vue'
 import Home from './general/Home.vue'
 import Announcements from './general/Announcements.vue'
 
+// new
+import RoadList from './road/RoadList.vue'
+
 // Grouping Components in the Same Chunk
 const SubmissionList = () => import(/* webpackChunkName: "submission" */ '@oj/views/submission/SubmissionList.vue')
 const SubmissionDetails = () => import(/* webpackChunkName: "submission" */ '@oj/views/submission/SubmissionDetails.vue')
@@ -19,10 +22,14 @@ const ResetPassword = () => import(/* webpackChunkName: "password" */ '@oj/views
 
 const Problem = () => import(/* webpackChunkName: "Problem" */ '@oj/views/problem/Problem.vue')
 
+// new
+const Road = () => import(/* webpackChunkName: "Problem" */ '@oj/views/road/Road.vue')
+
 export {
   Home, NotFound, Announcements,
   Logout, UserHome, About, FAQ,
   ProblemList, Problem,
+  RoadList, Road,
   ACMRank, OIRank,
   SubmissionList, SubmissionDetails,
   ApplyResetPassword, ResetPassword
