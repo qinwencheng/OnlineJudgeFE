@@ -1,10 +1,11 @@
 <template>
+
   <Row type="flex" :gutter="18">
-    <Col :span=19>
+    <Col :span=24>
     <Panel shadow>
       <div slot="title">{{$t('成长之路')}}</div>
-      <div slot="extra">
-        <!-- <ul class="filter">
+      <!--<div slot="extra">
+         <ul class="filter">
           <li>
             <Dropdown @on-click="filterByDifficulty">
               <span>{{query.difficulty === '' ? this.$i18n.t('m.Difficulty') : this.$i18n.t('m.' + query.difficulty)}}
@@ -37,13 +38,14 @@
               {{$t('m.Reset')}}
             </Button>
           </li>
-        </ul> -->
-      </div>
+        </ul> 
+      </div>-->
       <Table style="width: 100%; font-size: 16px;"
              :columns="problemTableColumns"
              :data="problemList"
              :loading="loadings.table"
              disabled-hover></Table>
+        
     </Panel>
     <!-- <Pagination
       :total="total" :page-size.sync="query.limit" @on-change="pushRouter" @on-page-size-change="pushRouter" :current.sync="query.page" :show-sizer="true"></Pagination> -->
@@ -87,6 +89,7 @@
     },
     data () {
       return {
+        value1: '1',
         tagList: [],
         problemTableColumns: [
           {

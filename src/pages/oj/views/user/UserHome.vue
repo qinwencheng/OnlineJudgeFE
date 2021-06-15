@@ -81,6 +81,7 @@
       init () {
         this.username = this.$route.query.username
         api.getUserInfo(this.username).then(res => {
+        //   console.log(res.data)
           this.changeDomTitle({title: res.data.data.user.username})
           this.profile = res.data.data
           this.getSolvedProblems()

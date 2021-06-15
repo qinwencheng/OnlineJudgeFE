@@ -1,10 +1,15 @@
 <template>
 
-  <div class="flex-container">
-    <Card class="bookcard">
-      <Book></Book>
+  <div class="//flex-container">
+    <Row :gutter="12">
+        <Col span="12">
+    <Card class="bookcard" >
+      <someBook :url="bookUrl">
+      </someBook>
     </Card>
-      <Card :padding="20" id="submit-code" dis-hover style="width: 50%;margin-top: 0px;">
+        </Col>
+        <Col span="12">
+      <Card :padding="20" id="submit-code" dis-hover class="bookcard" >
         <CodeMirror :value.sync="code"
                     :languages="problem.languages"
                     :language="language"
@@ -37,26 +42,26 @@
             </div>
           </Col>
 
-          <Col :span="12">
-            <template v-if="captchaRequired">
+          <Col :span="9">
+            <!-- <template v-if="captchaRequired">
               <div class="captcha-container">
                 <Tooltip v-if="captchaRequired" content="Click to refresh" placement="top">
                   <img :src="captchaSrc" @click="getCaptchaSrc"/>
                 </Tooltip>
                 <Input v-model="captchaCode" class="captcha-code"/>
               </div>
-            </template>
+            </template> -->
 
-            <Button type="warning" icon="chevron-right" @click="toNextProblem"
+            <Button type="success" icon="chevron-right" @click="toNextProblem"
                     :disabled="problem.my_status != 0"
-                    class="fl-left"
-                    :route="submissionRoute"
-                    >
+                    class="fl-right"
+                    :route="submissionRoute">
               <span v-if="problem.my_status === 0">{{$t('下一题')}}</span>
               <span v-else>{{$t('未完成')}}</span>
             </Button>
+            </Col>
 
-            
+            <Col :span="3"> 
             <Button type="warning" icon="edit" :loading="submitting" @click="submitCode"
                     :disabled="problemSubmitDisabled || submitted"
                     class="fl-right">
@@ -66,103 +71,8 @@
           </Col>
         </Row>
       </Card>
-    </div>
-
-    <!-- <div id="right-column">
-      <VerticalMenu @on-click="handleRoute">
-        <template v-if="this.contestID">
-          <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
-            <Icon type="ios-photos"></Icon>
-            {{$t('m.Problems')}}
-          </VerticalMenu-item>
-
-          <VerticalMenu-item :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
-            <Icon type="chatbubble-working"></Icon>
-            {{$t('m.Announcements')}}
-          </VerticalMenu-item>
-        </template>
-
-        <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
-          <Icon type="navicon-round"></Icon>
-           {{$t('m.Submissions')}}
-        </VerticalMenu-item>
-
-        <template v-if="this.contestID">
-          <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission"
-                             :route="{name: 'contest-rank', params: {contestID: contestID}}">
-            <Icon type="stats-bars"></Icon>
-            {{$t('m.Rankings')}}
-          </VerticalMenu-item>
-          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
-            <Icon type="home"></Icon>
-            {{$t('m.View_Contest')}}
-          </VerticalMenu-item>
-        </template>
-      </VerticalMenu>
-
-      <Card id="info">
-        <div slot="title" class="header">
-          <Icon type="information-circled"></Icon>
-          <span class="card-title">{{$t('m.Information')}}</span>
-        </div>
-        <ul>
-          <li><p>ID</p>
-            <p>{{problem._id}}</p></li>
-          <li>
-            <p>{{$t('m.Time_Limit')}}</p>
-            <p>{{problem.time_limit}}MS</p></li>
-          <li>
-            <p>{{$t('m.Memory_Limit')}}</p>
-            <p>{{problem.memory_limit}}MB</p></li>
-          <li>
-          <li>
-            <p>{{$t('m.IOMode')}}</p>
-            <p>{{problem.io_mode.io_mode}}</p>
-          </li>
-          <li>
-            <p>{{$t('m.Created')}}</p>
-            <p>{{problem.created_by.username}}</p></li>
-          <li v-if="problem.difficulty">
-            <p>{{$t('m.Level')}}</p>
-            <p>{{$t('m.' + problem.difficulty)}}</p></li>
-          <li v-if="problem.total_score">
-            <p>{{$t('m.Score')}}</p>
-            <p>{{problem.total_score}}</p>
-          </li>
-          <li>
-            <p>{{$t('m.Tags')}}</p>
-            <p>
-              <Poptip trigger="hover" placement="left-end">
-                <a>{{$t('m.Show')}}</a>
-                <div slot="content">
-                  <Tag v-for="tag in problem.tags" :key="tag">{{tag}}</Tag>
-                </div>
-              </Poptip>
-            </p>
-          </li>
-        </ul>
-      </Card>
-
-      <Card id="pieChart" :padding="0" v-if="!this.contestID || OIContestRealTimePermission">
-        <div slot="title">
-          <Icon type="ios-analytics"></Icon>
-          <span class="card-title">{{$t('m.Statistic')}}</span>
-          <Button type="ghost" size="small" id="detail" @click="graphVisible = !graphVisible">Details</Button>
-        </div>
-        <div class="echarts">
-          <ECharts :options="pie"></ECharts>
-        </div>
-      </Card>
-    </div>
-
-    <Modal v-model="graphVisible">
-      <div id="pieChart-detail">
-        <ECharts :options="largePie" :initOptions="largePieInitOpts"></ECharts>
-      </div>
-      <div slot="footer">
-        <Button type="ghost" @click="graphVisible=false">{{$t('m.Close')}}</Button>
-      </div>
-    </Modal> -->
+      </Col>
+    </Row>
   </div>
 </template>
 
@@ -176,6 +86,7 @@
   import api from '@oj/api'
   import {pie, largePie} from './chartData'
   import Book from '@oj/components/add/Book.vue'
+  import someBook from '@oj/components/add/someBook.vue'
 
   // 只显示这些状态的图形占用
   const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8']
@@ -184,11 +95,13 @@
     name: 'Problem',
     components: {
       CodeMirror,
-      Book
+      Book,
+      someBook
     },
     mixins: [FormMixin],
     data () {
       return {
+        bookUrl: '',
         statusVisible: false,
         captchaRequired: false,
         graphVisible: false,
@@ -249,21 +162,28 @@
       ...mapActions(['changeDomTitle']),
       init () {
         this.$Loading.start()
+
+        // api.getUserInfo(this.username).then(res => {
+        // //   console.log(res.data)
+        // //   console.log(res)
+        // })
+
         this.contestID = this.$route.params.contestID
         this.problemID = window.atob(this.$route.params.roadID)
-        console.log(this.problemID)
+        this.bookUrl = '../../../../../static/html/' + this.problemID + '.html'
+        // console.log(this.problemID)
         let func = this.$route.name === 'road-details' ? 'getProblem' : 'getContestProblem'
         api[func](this.problemID, this.contestID).then(res => {
           this.$Loading.finish()
           let problem = res.data.data
-          console.log(problem)
+        //   console.log(problem)
           this.changeDomTitle({title: problem.title})
           api.submissionExists(problem.id).then(res => {
             this.submissionExists = res.data.data
           })
           problem.languages = problem.languages.sort()
           this.problem = problem
-          this.changePie(problem)
+        //   this.changePie(problem)
 
           // 在beforeRouteEnter中修改了, 说明本地有code，无需加载template
           if (this.code !== '') {
@@ -279,42 +199,7 @@
           this.$Loading.error()
         })
       },
-      changePie (problemData) {
-        // 只显示特定的一些状态
-        for (let k in problemData.statistic_info) {
-          if (filtedStatus.indexOf(k) === -1) {
-            delete problemData.statistic_info[k]
-          }
-        }
-        let acNum = problemData.accepted_number
-        let data = [
-          {name: 'WA', value: problemData.submission_number - acNum},
-          {name: 'AC', value: acNum}
-        ]
-        this.pie.series[0].data = data
-        // 只把大图的AC selected下，这里需要做一下deepcopy
-        let data2 = JSON.parse(JSON.stringify(data))
-        data2[1].selected = true
-        this.largePie.series[1].data = data2
 
-        // 根据结果设置legend,没有提交过的legend不显示
-        let legend = Object.keys(problemData.statistic_info).map(ele => JUDGE_STATUS[ele].short)
-        if (legend.length === 0) {
-          legend.push('AC', 'WA')
-        }
-        this.largePie.legend.data = legend
-
-        // 把ac的数据提取出来放在最后
-        let acCount = problemData.statistic_info['0']
-        delete problemData.statistic_info['0']
-
-        let largePieData = []
-        Object.keys(problemData.statistic_info).forEach(ele => {
-          largePieData.push({name: JUDGE_STATUS[ele].short, value: problemData.statistic_info[ele]})
-        })
-        largePieData.push({name: 'AC', value: acCount})
-        this.largePie.series[0].data = largePieData
-      },
       handleRoute (route) {
         this.$router.push(route)
       },
@@ -491,16 +376,16 @@
     margin-left: 8px;
   }
 
-  .flex-container {
-    #problem-main {
-      flex: auto;
-      margin-right: 18px;
-    }
-    #right-column {
-      flex: none;
-      width: 220px;
-    }
-  }
+//   .flex-container {
+//     #problem-main {
+//       flex: auto;
+//       margin-right: 18px;
+//     }
+//     #right-column {
+//       flex: none;
+//       width: 220px;
+//     }
+//   }
 
   #problem-content {
     margin-top: -50px;
@@ -537,8 +422,8 @@
   }
 
   #submit-code {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    // margin-top: 20px;
+    // margin-bottom: 20px;
     .status {
       float: left;
       span {
@@ -546,36 +431,36 @@
         margin-left: 10px;
       }
     }
-    .captcha-container {
-      display: inline-block;
-      .captcha-code {
-        width: auto;
-        margin-top: -20px;
-        margin-left: 20px;
-      }
-    }
+    // .captcha-container {
+    //   display: inline-block;
+    //   .captcha-code {
+    //     width: auto;
+    //     margin-top: -20px;
+    //     margin-left: 20px;
+    //   }
+    // }
   }
 
-  #info {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    ul {
-      list-style-type: none;
-      li {
-        border-bottom: 1px dotted #e9eaec;
-        margin-bottom: 10px;
-        p {
-          display: inline-block;
-        }
-        p:first-child {
-          width: 90px;
-        }
-        p:last-child {
-          float: right;
-        }
-      }
-    }
-  }
+//   #info {
+//     margin-bottom: 20px;
+//     margin-top: 20px;
+//     ul {
+//       list-style-type: none;
+//       li {
+//         border-bottom: 1px dotted #e9eaec;
+//         margin-bottom: 10px;
+//         p {
+//           display: inline-block;
+//         }
+//         p:first-child {
+//           width: 90px;
+//         }
+//         p:last-child {
+//           float: right;
+//         }
+//       }
+//     }
+//   }
 
   .fl-right {
     float: right;
@@ -585,29 +470,30 @@
     float: left;
   }
 
-  #pieChart {
-    .echarts {
-      height: 250px;
-      width: 210px;
-    }
-    #detail {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-    }
-  }
+//   #pieChart {
+//     .echarts {
+//       height: 250px;
+//       width: 210px;
+//     }
+//     #detail {
+//       position: absolute;
+//       right: 10px;
+//       top: 10px;
+//     }
+//   }
 
-  #pieChart-detail {
-    margin-top: 20px;
-    width: 500px;
-    height: 480px;
-  }
+//   #pieChart-detail {
+//     margin-top: 20px;
+//     width: 500px;
+//     height: 480px;
+//   }
 
   .bookcard{
     margin-top: 0px;
-    width:50%;
-    height:900px;
-    overflow:scroll;
+    // margin-bottom: 0px;
+    height: 100%;
+    width: 100%;
+    // overflow:scroll;
   }
   // .CodeMirror-scroll {
   //   min-height: 1300px;

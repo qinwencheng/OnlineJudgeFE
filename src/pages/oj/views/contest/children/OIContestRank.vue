@@ -44,6 +44,7 @@
   import Pagination from '@oj/components/Pagination'
   import ContestRankMixin from './contestRankMixin'
   import utils from '@/utils/utils'
+  import api from '@oj/api'
 
   export default {
     name: 'acm-contest-rank',
@@ -162,6 +163,7 @@
       }
     },
     mounted () {
+      this.doSome()
       this.contestID = this.$route.params.contestID
       this.getContestRankData(1)
       if (this.contestProblems.length === 0) {
@@ -173,8 +175,17 @@
       }
     },
     methods: {
-      ...mapActions(['getContestProblems']),
+      ...mapActions(['getContestProblems', 'user']),
+      doSome () {
+        api.getUserInfo(this.username).then(res => {
+        // console.log(res.data)
+          console.log('------------------------')
+          console.log(res.data)
+          console.log('------------------------')
+      })
+      },
       applyToChart (rankData) {
+        // console.log(this.$route.query.username)
         let [usernames, scores] = [[], []]
         rankData.forEach(ele => {
           usernames.push(ele.user.username)
@@ -185,6 +196,7 @@
       },
       applyToTable (data) {
         // deepcopy
+        console.log(data)
         let dataRank = JSON.parse(JSON.stringify(data))
         // 从submission_info中取出相应的problem_id 放入到父object中,这么做主要是为了适应iview table的data格式
         // 见https://www.iviewui.com/components/table

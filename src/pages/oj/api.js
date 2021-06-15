@@ -48,6 +48,7 @@ export default {
     return ajax('captcha', 'get')
   },
   getUserInfo (username = undefined) {
+    // console.log(username)
     return ajax('profile', 'get', {
       params: {
         username
@@ -220,6 +221,7 @@ export default {
     })
   },
   getSubmission (id) {
+    // console.log('????' + id)
     return ajax('submission', 'get', {
       params: {
         id
@@ -293,6 +295,9 @@ function ajax (url, method, options) {
       data
     }).then(res => {
       // API正常返回(status=20x), 是否错误通过有无error判断
+    //   console.log(res.data)
+    //   console.log(url)
+    //   console.log(method)
       if (res.data.error !== null) {
         Vue.prototype.$error(res.data.data)
         reject(res)
