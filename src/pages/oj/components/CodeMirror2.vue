@@ -13,9 +13,9 @@
           <Button icon="refresh" @click="onResetClick"></Button>
         </Tooltip>
 
-        <Tooltip :content="this.$i18n.t('m.Upload_file')" placement="top" style="margin-left: 10px">
+        <!-- <Tooltip :content="this.$i18n.t('m.Upload_file')" placement="top" style="margin-left: 10px">
           <Button icon="upload" @click="onUploadFile"></Button>
-        </Tooltip>
+        </Tooltip> -->
 
         <input type="file" id="file-uploader" style="display: none" @change="onUploadFileDone">
 
@@ -31,7 +31,7 @@
       </div>
       </Col>
     </Row>
-    <codemirror :value="value" :options="options" @change="onEditorCodeChange" ref="myEditor">
+    <codemirror :value="value" :options="options" @change="onEditorCodeChange" ref="myEditor" >
     </codemirror>
   </div>
 </template>
@@ -183,6 +183,7 @@
   }
   .CodeMirror-scroll {
     min-height: 716px;
-    max-height: 1000px;
+    /* max-height: 716px; */
+    max-height: 716px;
   }
 </style>

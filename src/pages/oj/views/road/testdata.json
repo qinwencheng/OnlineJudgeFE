@@ -1,0 +1,26 @@
+[
+    {
+        "problemListName": "关卡1",
+        "problemList": [
+            {
+                "_id": 1
+            },
+            {
+                "_id": 2
+            }
+        ],
+        "problemListTag": "L2"
+    },
+    {
+        "problemListName": "关卡2",
+        "problemList": [
+            {
+                "_id": 8
+            },
+            {
+                "_id": 9
+            }
+        ],
+        "problemListTag": "L1"
+    }
+]

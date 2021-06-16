@@ -10,14 +10,14 @@
         </Col>
         <Col span="12">
       <Card :padding="20" id="submit-code" dis-hover class="bookcard" >
-        <CodeMirror :value.sync="code"
+        <CodeMirror2 :value.sync="code"
                     :languages="problem.languages"
                     :language="language"
                     :theme="theme"
                     @resetCode="onResetToTemplate"
                     @changeTheme="onChangeTheme"
                     @changeLang="onChangeLang"
-                    style=""></CodeMirror>
+                    calss="CodeMirror2"></CodeMirror2>
         <Row type="flex" justify="space-between">
           <Col :span="10">
             <div class="status" v-if="statusVisible">
@@ -79,7 +79,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import {types} from '../../../../store'
-  import CodeMirror from '@oj/components/CodeMirror2.vue'
+  import CodeMirror2 from '@oj/components/CodeMirror2.vue'
   import storage from '@/utils/storage'
   import {FormMixin} from '@oj/components/mixins'
   import {JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey} from '@/utils/constants'
@@ -87,14 +87,12 @@
   import {pie, largePie} from './chartData'
   import Book from '@oj/components/add/Book.vue'
   import someBook from '@oj/components/add/someBook.vue'
-
-  // 只显示这些状态的图形占用
-  const filtedStatus = ['-1', '-2', '0', '1', '2', '3', '4', '8']
+  import roadlist from './roadlist.json'
 
   export default {
     name: 'Problem',
     components: {
-      CodeMirror,
+      CodeMirror2,
       Book,
       someBook
     },
@@ -162,14 +160,16 @@
       ...mapActions(['changeDomTitle']),
       init () {
         this.$Loading.start()
-
         // api.getUserInfo(this.username).then(res => {
         // //   console.log(res.data)
         // //   console.log(res)
         // })
-
         this.contestID = this.$route.params.contestID
         this.problemID = window.atob(this.$route.params.roadID)
+        if (this.checkRoad() === false) {
+            this.$Loading.finish()
+            this.$router.go(-1)
+        }
         this.bookUrl = '../../../../../static/html/' + this.problemID + '.html'
         // console.log(this.problemID)
         let func = this.$route.name === 'road-details' ? 'getProblem' : 'getContestProblem'
@@ -252,10 +252,50 @@
         }
         this.refreshStatus = setTimeout(checkStatus, 2000)
       },
+      checkRoad () {
+        // 检查合法性
+        if (parseInt(this.problemID) === roadlist[0]) {
+            this.$Loading.error()
+            return true
+        }
+        var len = roadlist.length
+        var flag = false
+        for (var i = 0; i < len; i++) {
+            if (roadlist[i] === parseInt(this.problemID)) {
+                flag = true
+                api['getProblem'](roadlist[i - 1] + '', this.contestID).then(res => {
+                    if (res.data.data.my_status === null) {
+                        flag = true
+                    }
+                }, () => {
+                  this.$Loading.error()
+                })
+                break
+            }
+        }
+        return flag
+      },
       toNextProblem () {
         // this.$router.push({name: 'road-details', params: {roadID: parseInt(this.problemID) + 1 + 12906147}})
         // this.$router.push({name: 'submission-list', query: {problemID: this.problemID}})
-        this.$router.push({name: 'road-details', params: {roadID: window.btoa(parseInt(this.problemID) + 1)}})
+        var len = roadlist.length
+        var nextProblem = -1
+        for (var i = 0; i < len; i++) {
+            // console.log(typeof roadlist[i])
+            if (roadlist[i] === parseInt(this.problemID)) {
+                if (i !== len - 1) {
+                    nextProblem = roadlist[i + 1]
+                    break
+                } else {
+                    break
+                }
+            }
+        }
+        if (nextProblem === -1) {
+            this.$error(this.$i18n.t('没有啦！'))
+            return
+        }
+        this.$router.push({name: 'road-details', params: {roadID: window.btoa(nextProblem)}})
       },
       submitCode () {
         if (this.code.trim() === '') {
@@ -495,9 +535,14 @@
     width: 100%;
     // overflow:scroll;
   }
-  // .CodeMirror-scroll {
-  //   min-height: 1300px;
-  //   max-height: 11000px;
-  // }
+
+  
+</style>
+
+<style>
+.CodeMirror-scroll{
+        min-height: 10px;
+        max-height: 11000px;
+}
 </style>
 
