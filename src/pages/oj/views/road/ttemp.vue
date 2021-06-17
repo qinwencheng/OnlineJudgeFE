@@ -1,12 +1,17 @@
 <template>
-    <Table :columns="problemTableColumns" :data="data9"></Table>
+    <Table :columns="columns10" :data="mdata"></Table>
 </template>
 <script>
+import emitter from '../../components/mixins/emitter'
     import expandRow from './table-expand.vue'
+    import problemlist from './testdata2.json'
+    import api from '@oj/api'
+
     export default {
         components: { expandRow },
         data () {
             return {
+                mdata: [],
                 columns10: [
                     {
                         type: 'expand',
@@ -20,17 +25,53 @@
                         }
                     },
                     {
-                        title: 'Name',
-                        key: 'name'
-                    },
-                    {
-                        title: 'Age',
-                        key: 'age'
-                    },
-                    {
-                        title: 'Address',
-                        key: 'address'
+                      title: '关卡',
+                      key: 'listName'
                     }
+                    // {
+                    //   title: '#',
+                    //   key: '_id',
+                    //   width: 80,
+                    //   render: (h, params) => {
+                    //     return h('Button', {
+                    //       props: {
+                    //       type: 'text',
+                    //       size: 'large'
+                    //       },
+                    //       on: {
+                    //         click: () => {
+                    //           this.$router.push({name: 'road-details', params: {roadID: window.btoa(params.row._id)}})
+                    //           }
+                    //         },
+                    //         style: {
+                    //           padding: '2px 0'
+                    //         }
+                    //       }, params.row._id)
+                    //     }
+                    // }
+                    // {
+                    //   title: this.$i18n.t('m.Title'),
+                    //   width: 400,
+                    //   render: (h, params) => {
+                    //   return h('Button', {
+                    //       props: {
+                    //         type: 'text',
+                    //         size: 'large'
+                    //       },
+                    //       on: {
+                    //         click: () => {
+                    //           this.$router.push({name: 'road-details', params: {roadID: window.btoa(params.row._id)}})
+                    //         }
+                    //       },
+                    //       style: {
+                    //       padding: '2px 0',
+                    //       overflowX: 'auto',
+                    //       textAlign: 'left',
+                    //       width: '100%'
+                    //       }
+                    //     }, params.row.title)
+                    //   }
+                    // }
                 ],
                 problemTableColumns: [
           {
@@ -81,225 +122,75 @@
               }, params.row.title)
             }
           }
-        ],
-            data9: [
-    {
-        "id": 1735,
-        "tags": [
-            "L1",
-            "语言基础"
-        ],
-        "created_by": {
-            "id": 1056,
-            "username": "秦文成",
-            "real_name": null
-        },
-        "template": {},
-        "_id": 8,
-        "title": "【1】输出字符画",
-        "description": "<p>请输出如下字符画:</p><pre><code class=\"lang-cpp\">\n  *\n  *\n*****\n  *\n  *\n\n</code></pre>",
-        "input_description": "<p>本题无输入<br /></p>",
-        "output_description": "<p>输出如上字符画,请注意第1,2,4,5行单个字符，前面有两个空格，后面也有两个空格<br /></p>",
-        "samples": [
-            {
-                "input": "略",
-                "output": "略"
+                ],
+                data9: problemlist,
+                query: {
+                  tag: 'L2'
+                }
+                // pl: problemlist
             }
-        ],
-        "hint": "<p>注意空格</p><p><a href=\"https://mooc1-1.chaoxing.com/resourcescontroller/showpreview?attachmentId=675351727&courseId=215304179&fid=0&knowledgeId=384182400\" target=\"_blank\">视频讲解</a><br /></p>",
-        "languages": [
-            "C++",
-            "Java",
-            "Python2",
-            "Python3"
-        ],
-        "create_time": "2020-08-25T06:39:57.703537Z",
-        "last_update_time": null,
-        "time_limit": 1000,
-        "memory_limit": 256,
-        "io_mode": {
-            "input": "input.txt",
-            "output": "output.txt",
-            "io_mode": "Standard IO"
         },
-        "spj": false,
-        "spj_language": null,
-        "rule_type": "OI",
-        "difficulty": "Low",
-        "source": "",
-        "total_score": 100,
-        "submission_number": 74,
-        "accepted_number": 35,
-        "statistic_info": {
-            "0": 35,
-            "-1": 29,
-            "-2": 10
+        mounted () {
+          this.init()
         },
-        "share_submission": false,
-        "contest": null,
-        "my_status": 0
-    },
-    {
-        "id": 456,
-        "tags": [
-            "L1"
-        ],
-        "created_by": {
-            "id": 1,
-            "username": "root",
-            "real_name": null
-        },
-        "template": {},
-        "_id": 11,
-        "title": "【1】小小裁缝师",
-        "description": "<p>服装厂原来要做一套衣服用布3.2m，改进裁剪方法后，每套衣服用布2.8m。原来做791套衣服的布，现在可以做多少套？</p>",
-        "input_description": "<p>本题无输入</p>",
-        "output_description": "<p>输出为一个具体的数字，不需要单位。</p>",
-        "samples": [
-            {
-                "input": "无",
-                "output": "无"
-            }
-        ],
-        "hint": "<p><a href=\"https://mooc1-1.chaoxing.com/resourcescontroller/showpreview?attachmentId=675340226&courseId=215304179&fid=0&knowledgeId=384183375\" target=\"_blank\">视频讲解</a><br /></p>",
-        "languages": [
-            "C++"
-        ],
-        "create_time": "2019-07-24T07:45:54.123447Z",
-        "last_update_time": null,
-        "time_limit": 1000,
-        "memory_limit": 256,
-        "io_mode": {
-            "input": "input.txt",
-            "output": "output.txt",
-            "io_mode": "Standard IO"
-        },
-        "spj": false,
-        "spj_language": null,
-        "rule_type": "OI",
-        "difficulty": "Low",
-        "source": "",
-        "total_score": 100,
-        "submission_number": 533,
-        "accepted_number": 295,
-        "statistic_info": {
-            "0": 295,
-            "-1": 56,
-            "-2": 182
-        },
-        "share_submission": false,
-        "contest": null,
-        "my_status": 0
-    },
-    {
-        "id": 457,
-        "tags": [
-            "L1"
-        ],
-        "created_by": {
-            "id": 1,
-            "username": "root",
-            "real_name": null
-        },
-        "template": {},
-        "_id": 12,
-        "title": "【1】买铅笔",
-        "description": "<p>买5支铅笔要0.6元，买同样的铅笔16支，需要多少钱？</p>",
-        "input_description": "<p>此题无输入</p>",
-        "output_description": "<p>输出为一个具体的数字，表示钱数，不需要单位。</p>",
-        "samples": [
-            {
-                "input": "无",
-                "output": "无"
-            }
-        ],
-        "hint": "<p><a href=\"https://mooc1-1.chaoxing.com/resourcescontroller/showpreview?attachmentId=675340268&courseId=215304179&fid=0&knowledgeId=384183392\" target=\"_blank\">视频讲解</a><br /></p>",
-        "languages": [
-            "C++"
-        ],
-        "create_time": "2019-07-24T07:45:57.827424Z",
-        "last_update_time": null,
-        "time_limit": 1000,
-        "memory_limit": 256,
-        "io_mode": {
-            "input": "input.txt",
-            "output": "output.txt",
-            "io_mode": "Standard IO"
-        },
-        "spj": false,
-        "spj_language": null,
-        "rule_type": "OI",
-        "difficulty": "Low",
-        "source": "",
-        "total_score": 100,
-        "submission_number": 524,
-        "accepted_number": 296,
-        "statistic_info": {
-            "0": 296,
-            "4": 1,
-            "-1": 62,
-            "-2": 165
-        },
-        "share_submission": false,
-        "contest": null,
-        "my_status": 0
-    },
-    {
-        "id": 455,
-        "tags": [
-            "L1"
-        ],
-        "created_by": {
-            "id": 1,
-            "username": "root",
-            "real_name": null
-        },
-        "template": {},
-        "_id": 16,
-        "title": "【1】猜数游戏",
-        "description": "<p>有一个“就是它”的猜数游戏，步骤如下：请你任意输入的一个三位数 x ，在这个三位数后重复一遍，得到一个六位数（例如，467 → 467467，123 → 123123），再把这个数连续除以7、11、13，最后的商 y 就是你输入的三位数。请加以验证。</p>",
-        "input_description": "<p>输入一个三位数整数 x。</p>",
-        "output_description": "<p>输出一个三位数整数 y。</p>",
-        "samples": [
-            {
-                "input": "467",
-                "output": "467"
-            }
-        ],
-        "hint": "<p><a href=\"https://mooc1-1.chaoxing.com/resourcescontroller/showpreview?attachmentId=675340281&courseId=215304179&fid=0&knowledgeId=384183406\" target=\"_blank\">视频讲解</a><br /></p>",
-        "languages": [
-            "C++"
-        ],
-        "create_time": "2019-07-24T07:45:17.390486Z",
-        "last_update_time": null,
-        "time_limit": 1000,
-        "memory_limit": 256,
-        "io_mode": {
-            "input": "input.txt",
-            "output": "output.txt",
-            "io_mode": "Standard IO"
-        },
-        "spj": false,
-        "spj_language": null,
-        "rule_type": "OI",
-        "difficulty": "Low",
-        "source": "",
-        "total_score": 100,
-        "submission_number": 639,
-        "accepted_number": 283,
-        "statistic_info": {
-            "0": 283,
-            "4": 4,
-            "8": 48,
-            "-1": 117,
-            "-2": 184
-        },
-        "share_submission": false,
-        "contest": null,
-        "my_status": null
-    }
-]
-            }
+        methods: {
+          init () {
+            // // this.pl[1].data = '9199'
+            // console.log(this.pl)
+            // var k = []
+            let offset = 0
+            let limit = 1000
+            var pld = ''
+            var i = 1
+            api.getProblemList(offset, limit, this.query).then(res => {
+                console.log(res)
+                // console.log(res.data.data.results.length)
+                pld.data = this.filterByAccpet(res.data.data.results)
+                // if (this.isAuthenticated) {
+                //   this.addStatusColumn(this.columns10, pld.data)
+                // }
+                this.mdata.push(pld)
+            })
+
+            // problemlist.forEach(element => {
+            //   console.log(i + ' 1')
+            //   pld = element
+            //   let offset = 0
+            //   let limit = 1000
+            //   this.query.tag = element.listTag
+            //   api.getProblemList(offset, limit, this.query).then(res => {
+            //     console.log(i + ' 2')
+            //     // console.log(res.data.data.results.length)
+            //     pld.data = this.filterByAccpet(res.data.data.results)
+            //     // if (this.isAuthenticated) {
+            //     //   this.addStatusColumn(this.columns10, pld.data)
+            //     // }
+            //     // console.log(pld)
+            //     this.mdata.push(pld)
+            //   })
+            //   console.log(i + ' 3')
+            // })
+            // console.log(i + ' 4')
+            // i = i + 1
+            // // console.log(this.mdata)
+          },
+          filterByAccpet (results) {
+            var ans = []
+            var preS = 0
+            var endFlag = 0
+            results.forEach(element => {
+              if (element.my_status === 0 && endFlag === 0) {
+                preS = element.my_status
+                ans.push(element)
+              }
+              if (preS === 0 && element.my_status === null && endFlag === 0) {
+                ans.push(element)
+                endFlag = 1
+              }
+            })
+            // console.log(ans)
+            return ans
+          }
         }
     }
 </script>

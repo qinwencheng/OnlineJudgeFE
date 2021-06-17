@@ -1,0 +1,30 @@
+[
+    {
+        "listName": "111",
+        "data": "",
+        "listTag": "L1",
+        "_expanded": false,
+        "_disableExpand": false
+    },
+    {
+        "listName": "222",
+        "data": "",
+        "listTag": "L2",
+        "_expanded": false,
+        "_disableExpand": false
+    },
+    {
+        "listName": "333",
+        "data": "4",
+        "listTag": "循环",
+        "_expanded": false,
+        "_disableExpand": false
+    },
+    {
+        "listName": "333",
+        "data": "",
+        "listTag": "二维数组",
+        "_expanded": false,
+        "_disableExpand": false
+    }
+]

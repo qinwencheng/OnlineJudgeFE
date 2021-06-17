@@ -1,17 +1,7 @@
 <style scoped>
-    /* .expand-row{
-        margin-bottom: 16px;
-    } */
+
 </style>
 <template>
-    <!-- <div>
-        <Row class="expand-row">
-            <Col span="24">
-                <span class="expand-key">t: </span>
-                <span class="expand-value">{{ row.title }}</span>
-            </Col>
-        </Row>
-    </div> -->
     <Table style="width: 100%; font-size: 16px;"
              :columns="problemTableColumns"
              :data="this.problemList"
@@ -77,15 +67,7 @@
           }
         ],
         problemList: [],
-        limit: 100,
         routeName: '',
-        query: {
-          keyword: '',
-          difficulty: '',
-          tag: '',
-          page: 1,
-          limit: 100
-        },
         loadings: {
           table: true,
           tag: true
@@ -97,37 +79,18 @@
     },
     methods: {
       init () {
+        // console.log('row is :')
         // console.log(this.row)
         this.routeName = this.$route.name
-        let query = this.$route.query
-        // console.log(this.row)
-        this.query.tag = this.row.problemListTag
-        this.query.difficulty = query.difficulty || ''
-        this.query.keyword = query.keyword || ''
         this.getProblemList()
-        // console.log(this.problemList)
-      },
-      pushRouter () {
-        this.$router.push({
-          name: 'road-list',
-          query: utils.filterEmptyValue(this.query)
-        })
+        console.log(this.row)
       },
       getProblemList () {
-        let offset = (this.query.page - 1) * this.query.limit
-        this.loadings.table = true
-        api.getProblemList(offset, this.limit, this.query).then(res => {
-          this.loadings.table = false
-          // this.total = res.data.data.total
-        //   console.log(res)
-          this.problemList = this.filterByAccpet(res.data.data.results)
-          console.log(this.problemList)
+          this.problemList = this.filterByAccpet(this.row.data)
+        //   console.log(this.problemList)
           if (this.isAuthenticated) {
             this.addStatusColumn(this.problemTableColumns, this.problemList)
           }
-        }, res => {
-          this.loadings.table = false
-        })
       },
       filterByAccpet (results) {
         var ans = []
@@ -164,4 +127,3 @@
     }
   }
 </script>
-

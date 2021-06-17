@@ -183,13 +183,14 @@
       },
       getProblemList () {
         let offset = (this.query.page - 1) * this.query.limit
+        console.log(this.query)
         this.loadings.table = true
         api.getProblemList(offset, this.limit, this.query).then(res => {
           this.loadings.table = false
           // this.total = res.data.data.total
         //   console.log(res)
           this.problemList = this.filterByAccpet(res.data.data.results)
-          console.log(this.problemList)
+        //   console.log(this.problemList)
           if (this.isAuthenticated) {
             this.addStatusColumn(this.problemTableColumns, this.problemList)
           }

@@ -215,3 +215,2042 @@
         "my_status": null
     }
 ]
+
+
+{
+    "results": [
+        {
+            "id": 35,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 157,
+            "title": "【4】判断闰年",
+            "description": "<p>判断一个整数n是否是闰年。一个年份n是不是闰年需要满足以下两个条件其中之一即可：</p><p>1.年份n能被4整除，且n不能被100整除</p><p>2.年份n是400的倍数</p>",
+            "input_description": "<p>一行，输入一个整数n。</p>",
+            "output_description": "<p>一行，如果是闰年，输出 n&quot; is leap year.&quot;；否则，输出 n&quot; is not leap year.&quot;。</p>",
+            "samples": [
+                {
+                    "input": "2000",
+                    "output": "2000 is leap year."
+                },
+                {
+                    "input": "1900",
+                    "output": "1900 is not leap year."
+                }
+            ],
+            "hint": "<p>1&lt;=n&lt;=2019，</p><p><a href=\"https://mooc1-1.chaoxing.com/resourcescontroller/showpreview?attachmentId=675341193&courseId=215304179&fid=0&knowledgeId=385132107\" target=\"_blank\">视频讲解</a></p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-03-19T06:12:34.686762Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 1502,
+            "accepted_number": 494,
+            "statistic_info": {
+                "0": 494,
+                "4": 3,
+                "8": 135,
+                "-1": 114,
+                "-2": 116
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 439,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 435,
+            "title": "【9】循环左移",
+            "description": "<p>设将n(1&lt;n&lt;=100)个整数存放到一维数组R中。试设计一个在时间和空间两方面都尽可能高校的算法。将R中保存的序列循环左移p(0&lt;p&lt;n)个位置，即将R中的数据由(x0,x1,....xn-1)变换为(xp,xp+1,...xn-1,x0,x1,...,xp-1)。</p>",
+            "input_description": "<p>第一行输入数组长度n和左移位数p第二行输入n个数</p>",
+            "output_description": "<p>循环左移后的数组的值</p>",
+            "samples": [
+                {
+                    "input": "8 3\n1 2 3 4 5 6 7 8",
+                    "output": "4 5 6 7 8 1 2 3"
+                }
+            ],
+            "hint": "<p><a href=\"https://mooc1-1.chaoxing.com/resourcescontroller/showpreview?attachmentId=680743381&courseId=215304179&fid=0&knowledgeId=387006652\" target=\"_blank\">视频讲解</a><br /></p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:39:21.350813Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 61,
+            "accepted_number": 49,
+            "statistic_info": {
+                "0": 49,
+                "8": 3,
+                "-1": 8,
+                "-2": 1
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 130,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 510,
+            "title": "【11】我要建地铁",
+            "description": "<p>某校大门外长度为L的马路上有一排树，每两棵相邻的树之间的间隔都是1米。我们可以把马路看成一个数轴，马路的一端在数轴0的位置，另一端在L的位置；数轴上的每个整数点，即0，1，2，……，L，都种有一棵树。</p><p>由于马路上有一些区域要用来建地铁。这些区域用它们在数轴上的起始点和终止点表示。 已知任一区域的起始点和终止点的坐标都是整数，区域之间可能有重合的部分。现在要把这些区域中的树（包括区域端点处的两棵树）移走。你的任务是计算将这些树都移走后，马路上还有多少棵树。</p>",
+            "input_description": "<p>输入的第一行有两个整数：L（1 &lt;= L &lt;= 10000）和 M（1 &lt;= M &lt;= 100），L代表马路的长度，M代表区域的数目，L和M之间用一个空格隔开。接下来的M行每行包含两个不同的整数，用一个空格隔开，表示一个区域的起始点和终止点的坐标。</p>",
+            "output_description": "<p>输出包括一行，这一行只包含一个整数，表示马路上剩余的树的数目。</p>",
+            "samples": [
+                {
+                    "input": "500 3\n150 300\n100 200\n470 471",
+                    "output": "298"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:11:00.133047Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 196,
+            "accepted_number": 99,
+            "statistic_info": {
+                "0": 99,
+                "4": 13,
+                "8": 15,
+                "-1": 27,
+                "-2": 42
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 120,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1001,
+            "title": "【1】 标题统计",
+            "description": "<p>凯凯刚写了一篇美妙的作文，请问这篇作文的标题中有多少个字符？ 注意：标题中可能包含大、小写英文字母、数字字符、空格和换行符。统计标题字 符数时，空格和换行符不计算在内。</p>",
+            "input_description": "<p>输入文件只有一行，一个字符串 s。</p>",
+            "output_description": "<p>输出文件只有一行，包含一个整数，即作文标题的字符数（不含空格和换行符）。</p>",
+            "samples": [
+                {
+                    "input": "234 ",
+                    "output": "3"
+                },
+                {
+                    "input": "Ca 45 ",
+                    "output": "4"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-10T02:59:16.854504Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 210,
+            "accepted_number": 130,
+            "statistic_info": {
+                "0": 130,
+                "4": 2,
+                "8": 11,
+                "-1": 18,
+                "-2": 36
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": 0
+        },
+        {
+            "id": 411,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 566,
+                "username": "彭纪洪",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1003,
+            "title": "【1】定义并使用函数",
+            "description": "<p>有这样一个表达式$y = ax^2+ bx+ c$，要求将该表达式写成函数func，该函数接收4个参数a，b，c，x；另外定义一个函数print，该函数会输出表达式的结果。</p>",
+            "input_description": "<p>输入为一行，有4个浮点数a,b,c,x。<br /></p>",
+            "output_description": "<p>输出为一行，一个浮点数。保留4位小数输出。</p>",
+            "samples": [
+                {
+                    "input": "2 3 4 2\n",
+                    "output": "18.0000\n"
+                },
+                {
+                    "input": "0 1 2 4\n",
+                    "output": "6.0000\n"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:09:55.063515Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 131,
+            "accepted_number": 80,
+            "statistic_info": {
+                "0": 80,
+                "8": 33,
+                "-1": 8,
+                "-2": 10
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 412,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 566,
+                "username": "彭纪洪",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1004,
+            "title": "【1】幂级数",
+            "description": "<p>请你实现一个函数 pow，该函数传入一个整数 n，返回$ 2^n$的值。</p>",
+            "input_description": "<p>输入一个整数 n（0≤n≤62）。</p>",
+            "output_description": "<p>输出为1个整数，$2^n$</p>",
+            "samples": [
+                {
+                    "input": "0",
+                    "output": "1"
+                },
+                {
+                    "input": "10",
+                    "output": "1024"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:10:01.037017Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 248,
+            "accepted_number": 87,
+            "statistic_info": {
+                "0": 87,
+                "8": 133,
+                "-1": 15,
+                "-2": 13
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 413,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 566,
+                "username": "彭纪洪",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1005,
+            "title": "【1】最大的数",
+            "description": "<p>请你实现一个函数 max，该.函数传入一个数组 a，和数组的长度 n，数组 a 中最大的值。$（n 不大于10^5，数组 a 中的每个值不超过 10^9）$</p>",
+            "input_description": "<p>第1行输入一个整数 n；接下来一行输入 n 个整数，用空格隔开。</p>",
+            "output_description": "<p>输出这个数组中最大的值</p>",
+            "samples": [
+                {
+                    "input": "6\n1 7 3 9 12 5\n",
+                    "output": "12"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:11:19.727114Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 130,
+            "accepted_number": 92,
+            "statistic_info": {
+                "0": 92,
+                "4": 3,
+                "8": 11,
+                "-1": 8,
+                "-2": 16
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 126,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1006,
+            "title": "【1】短信费用",
+            "description": "<p>用手机发短信，一条短信资费为0.1元，但限定一条短信的内容在70个字以内(包括70个字）。如果你一次所发送的短信超过了70个字，则会按照每70个字一条短信的限制把它分割成多条短信发送。假设已经知道你当月所发送的短信的字数，试统计一下你当月短信的总资费。</p>",
+            "input_description": "<p>第一行是整数n，表示当月发送短信的总次数，接着n行每行一个整数，表示每次短信的字数。</p>",
+            "output_description": "<p>输出一行，当月短信总资费，单位为元，精确到小数点后1位。</p>",
+            "samples": [
+                {
+                    "input": "10\n39\n49\n42\n61\n44\n147\n42\n72\n35\n46",
+                    "output": "1.3"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:10:04.864182Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 172,
+            "accepted_number": 120,
+            "statistic_info": {
+                "0": 120,
+                "1": 1,
+                "8": 8,
+                "-1": 20,
+                "-2": 23
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 448,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1103,
+            "title": "【2】字符串的拷贝",
+            "description": "<p>编写一函数，完成一个字符串的拷贝，要求用字符指针实现。在主函数中输入任意字符串，调用该函数之后输出拷贝后的字符串。</p>",
+            "input_description": "<p>输入任意字符串(不含空格)</p>",
+            "output_description": "<p>输出其拷贝字符串</p>",
+            "samples": [
+                {
+                    "input": "abccbd",
+                    "output": "abccbd"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:41:51.086169Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 77,
+            "accepted_number": 68,
+            "statistic_info": {
+                "0": 68,
+                "4": 1,
+                "-1": 2,
+                "-2": 6
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 191,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 3,
+                "username": "loveshes",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1301,
+            "title": "【5】去掉某几位",
+            "description": "<p>输入一个高精度的正整数num（num不超过240位），去掉其中任意t个数字后剩下的数字按<strong>原左右次序</strong>组成一个新的正整数。编程对给定的num和t，寻找一种方案使得剩下的数字组成的<strong>新数最小</strong>，并输出新的正整数。</p>",
+            "input_description": "<p>输入为2行，第1行为高精度整数num（num不超过240位）；第2行为要删掉的位数t（t小于num的位数）。</p>",
+            "output_description": "<p>输出为1行，一个最小的新数。</p>",
+            "samples": [
+                {
+                    "input": "175438\n4",
+                    "output": "13"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-24T07:34:14.964465Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 250,
+            "accepted_number": 67,
+            "statistic_info": {
+                "0": 67,
+                "1": 1,
+                "8": 111,
+                "-1": 54,
+                "-2": 17
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 190,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 3,
+                "username": "loveshes",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1302,
+            "title": "【5】快递装箱",
+            "description": "<p>一个工厂制造的产品形状都是长方体，它们的高度都是h，长和宽都相等，一共有六个型号，他们的长宽分别为1*1，2*2，3*3，4*4，5*5，6*6。这些产品通常使用一个6*6*h 的长方体包裹包装然后邮寄给客户。因为邮费很贵，所以工厂要想方设法的减小每个订单运送时的包裹数量。他们很需要有一个好的程序帮他们解决这个问题从而节省费用。现在这个程序由你来设计。</p>",
+            "input_description": "<p>输入包括几行，每一行代表一个订单。每个订单里的一行包括六个整数，中间用空格隔开，分别为1*1至6*6这六种产品的数量。输入以6个0组成的一行结尾。</p>",
+            "output_description": "<p>除了输入的最后一行6个0以外，输入文件里每一行对应着输出文件的一行，每一行输出一个整数代表对应的订单所需的最小包裹数。</p>",
+            "samples": [
+                {
+                    "input": "0 0 4 0 0 1\n7 5 1 0 0 0\n0 0 0 0 0 0",
+                    "output": "2\n1"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-24T07:34:09.913092Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 216,
+            "accepted_number": 74,
+            "statistic_info": {
+                "0": 74,
+                "4": 3,
+                "8": 56,
+                "-1": 42,
+                "-2": 41
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": 0
+        },
+        {
+            "id": 189,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 3,
+                "username": "loveshes",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1303,
+            "title": "【5】接水问题",
+            "description": "<p>学校里有一个水房，水房里一共装有m个龙头可供同学们打开水，每个龙头每秒钟的供水量相等，均为1。现在有n名同学准备接水，他们的初始接水顺序已经确定。将这些同学按接水顺序从1到n编号，i号同学的接水量为wi。接水开始时，1到m号同学各占一个水龙头，并同时打开水龙头接水。当其中某名同学j完成其接水量要求wj后，下一名排队等候接水的同学k马上接替j同学的位置开始接水。这个换人的过程是瞬间完成的，且没有任何水的浪费。即j同学第x秒结束时完成接水，则k同学第x+1 秒立刻开始接水。 若当前接水人数n&#039;不足m，则只有n&#039;个龙头供水，其它 m-n&#039;个龙头关闭。现在给出n名同学的接水量，按照上述接水规则，问所有同学都接完水需要多少秒。</p>",
+            "input_description": "<p>第1行有2个整数n和m，用一个空格隔开，分别表示接水人数和龙头个数（1≤n≤10000，1≤m≤100）。第2行有n个整数 w1、w2、……、wn，每两个整数之间用一个空格隔开，wi表示i号同学的接水量。</p>",
+            "output_description": "<p>输出只有一行，1个整数，表示接水所需的总时间。</p>",
+            "samples": [
+                {
+                    "input": "5 3\n4 4 1 2 1",
+                    "output": "4"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-23T13:04:20.765991Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 264,
+            "accepted_number": 123,
+            "statistic_info": {
+                "0": 123,
+                "1": 2,
+                "8": 106,
+                "-1": 11,
+                "-2": 22
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 188,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 3,
+                "username": "loveshes",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1304,
+            "title": "【5】活动安排",
+            "description": "<p>设有n个活动的集合 E={1,2,…,n}，其中每个活动都要求使用同一资源，如演讲会场等，而在同一时间内只有一个活动能使用这一资源。每个活动i都有一个要求使用该资源的起始时间 si 和一个结束时间 fi,且 si&lt;fi。如果选择了活动i，则它在半开时间区间 [si, fi) 内占用资源。若区间 [si, fi) 与区间 [sj, fj) 不相交,则称活动i与活动j是相容的。也就是说，当 si≥fj 或 sj≥fi 时，活动i与活动j相容。选择出由相互兼容的活动组成的最大集合。</p>",
+            "input_description": "<p>第1行一个整数n(n ≤ 1000)，接下来n行，每行两个整数si和fi。</p>",
+            "output_description": "<p>输出为一个整数，输出尽可能多的互相兼容的活动个数。</p>",
+            "samples": [
+                {
+                    "input": "4 \n1 3 \n4 6 \n2 5 \n1 7 ",
+                    "output": "2"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-23T13:04:13.397761Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 199,
+            "accepted_number": 95,
+            "statistic_info": {
+                "0": 95,
+                "8": 72,
+                "-1": 14,
+                "-2": 18
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 187,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 3,
+                "username": "loveshes",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1305,
+            "title": "【5】新加勒比海盗",
+            "description": "<p>有一天，海盗们截获了一艘装满各种各样古董的货船，虽然海盗船足够大，但载重量为C，每件古董的重量为Wi，海盗们该如何把尽可能多数量的宝贝装上海盗船呢？</p>",
+            "input_description": "<p>输入为3行。第1行输入海盗船的载重量C (1≤C≤100)；第2行输入古董总个数n (其中1≤n≤100)；第3行输入n个古董的重量，每2个数用空格隔开。数据均为整数。</p>",
+            "output_description": "<p>输出为1行，为装入海盗船的各个古董的重量（每两个重量之间用空格隔开）。若一个都装不下，则输出0。</p>",
+            "samples": [
+                {
+                    "input": "30\n8\n4 10 7 11 3 5 14 2",
+                    "output": "2 3 4 5 7"
+                },
+                {
+                    "input": "5\n2\n7 8",
+                    "output": "0"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-23T13:04:08.077089Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 153,
+            "accepted_number": 77,
+            "statistic_info": {
+                "0": 77,
+                "8": 60,
+                "-1": 3,
+                "-2": 13
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 186,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 3,
+                "username": "loveshes",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1306,
+            "title": "【5】加勒比海盗船",
+            "description": "<p>有一天，海盗们截获了一艘装满各种各样古董的货船，虽然海盗船足够大，但载重量为C，每件古董的重量为Wi，海盗们该如何把尽可能多数量的宝贝装上海盗船呢？</p>",
+            "input_description": "<p>输入为3行。第1行输入海盗船的载重量C (1≤C≤100)；第2行输入古董总个数n (其中1≤n≤100)；第3行输入n个古董的重量，每2个数用空格隔开。数据均为整数。</p>",
+            "output_description": "<p>输出为1行，为装入海盗船的古董数。</p>",
+            "samples": [
+                {
+                    "input": "30\n8\n4 10 7 11 3 5 14 2",
+                    "output": "5"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-23T13:04:00.885885Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 168,
+            "accepted_number": 119,
+            "statistic_info": {
+                "0": 119,
+                "8": 23,
+                "-1": 15,
+                "-2": 11
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 165,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1307,
+            "title": "【5】电池寿命",
+            "description": "<p>小S新买了一个掌上游戏机，这个游戏机由两节5号电池供电。为了保证能够长时间玩游戏，他买了很多5号电池，这些电池的生产商不同，质量也有差异，因而使用寿命也有所不同，有的能使用5个小时，有的可能就只能使用3个小时。显然如果他只有两个电池一个能用5小时一个能用3小时，那么他只能玩3个小时的游戏，有一个电池剩下的电量无法使用，但是如果他有更多的电池，就可以更加充分地利用它们，比如他有三个电池分别能用3、3、5小时，他可以先使用两节能用3个小时的电池，使用半个小时后再把其中一个换成能使用5个小时的电池，两个半小时后再把剩下的一节电池换成刚才换下的电池（那个电池还能用2.5个小时），这样总共就可以使用5.5个小时，没有一点浪费。</p><p>现在已知电池的数量和电池能够使用的时间，请你找一种方案使得使用时间尽可能的长。</p>",
+            "input_description": "<p>输入包含多组数据。每组数据包括两行，第一行是一个整数N (2 ≤ N ≤ 1000)，表示电池的数目，接下来一行是N个正整数表示电池能使用的时间。</p>",
+            "output_description": "<p>对每组数据输出一行，表示电池能使用的时间，保留到小数点后1位。</p>",
+            "samples": [
+                {
+                    "input": "2\n3 5\n3\n3 3 5",
+                    "output": "3.0\n5.5"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-06-07T10:45:02.022014Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 137,
+            "accepted_number": 57,
+            "statistic_info": {
+                "0": 57,
+                "1": 12,
+                "4": 2,
+                "8": 34,
+                "-1": 19,
+                "-2": 13
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 128,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1455,
+            "title": "【7】数的计数",
+            "description": "<p>我们要求找出具有下列性质数的个数(包含输入的自然数nn)。</p><p>先输入一个自然数 n~(n\\le 1000)n (n≤1000)，然后对此自然数按照如下方法进行处理：</p><p>1.不作任何处理；</p><p>2.在它的左边加上一个自然数，但该自然数不能超过原数的一半；</p><p>3.加上数后，继续按此规则进行处理,直到不能再加自然数为止。</p>",
+            "input_description": "<p>自然数n</p>",
+            "output_description": "<p>满足条件的数的个数</p>",
+            "samples": [
+                {
+                    "input": "6",
+                    "output": "6"
+                }
+            ],
+            "hint": "<p>满足条件的数为 6 (此部分不必输出)，他们分别是：</p><p>（1）6</p><p>（2）16</p><p>（3）26</p><p>（4）126</p><p>（5）36</p><p>（6）136</p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:10:24.826700Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 142,
+            "accepted_number": 95,
+            "statistic_info": {
+                "0": 95,
+                "4": 5,
+                "8": 13,
+                "-1": 5,
+                "-2": 24
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 129,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1552,
+            "title": "【8】爬楼梯",
+            "description": "<p>树老师爬楼梯，他可以每次走1级或者2级，输入楼梯的级数，求不同的走法数。</p><p>例如：楼梯一共有3级，他可以每次都走一级，或者第一次走一级，第二次走两级，也可以第一次走两级，第二次走一级，一共3种方法。</p>",
+            "input_description": "<p>输入包含若干行，每行包含一个正整数N，代表楼梯级数，1≤N≤30。</p>",
+            "output_description": "<p>不同的走法数，每一行输入对应一行输出。</p>",
+            "samples": [
+                {
+                    "input": "5\n8\n10",
+                    "output": "8\n34\n89"
+                }
+            ],
+            "hint": "<p>while(scanf(&quot;%d&quot;,&n)!=EOF){    //}可以连续的输入若干行，直到输入CTRL+Z停止输入。</p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:10:30.343744Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 174,
+            "accepted_number": 99,
+            "statistic_info": {
+                "0": 99,
+                "2": 2,
+                "4": 8,
+                "8": 31,
+                "-1": 18,
+                "-2": 16
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 417,
+            "tags": [
+                "L2",
+                "map"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1958,
+            "title": "【18】水果店",
+            "description": "<p>小明经营着一个不大的水果店。他认为生存之道就是经营最受顾客欢迎的水果。现在他想要一份水果销售情况的明细表，这样就可以很容易掌握所有水果的销售情况了。小明告诉你每一笔销售记录的水果名称，产地和销售的数量，请你帮他生成明细表。</p>",
+            "input_description": "<p>第一行是一个整数 N(0&lt;N≤1000)，表示小明有 N 次成功的交易。其后有 N 行数据，每行表示一次交易，由水果名称(小写字母组成，长度不超过 100)，水果产地(小写字母组成，长度不超过 100)和交易的水果数目(正整数，不超过 1000)组成。</p>",
+            "output_description": "<p>请你输出一份排版格式正确(请分析样本输出)的水果销售情况明细表。这份明细表包括所有水果的产地、名称和销售数目的信息。水果先按产地分类，产地按字母顺序排列；同一产地的水果按照名称排序，名称按字母顺序排序。</p>",
+            "samples": [
+                {
+                    "input": "5\napple shandong 3\npineapple guangdong 1\nsugarcane guangdong 1\npineapple guangdong 3\npineapple guangdong 1\n",
+                    "output": "guangdong\n   |----pineapple(5)\n   |----sugarcane(1)\nshandong\n   |----apple(3)\n"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:31:52.955226Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 65,
+            "accepted_number": 28,
+            "statistic_info": {
+                "0": 28,
+                "1": 5,
+                "4": 2,
+                "8": 4,
+                "-1": 12,
+                "-2": 14
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 418,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1960,
+            "title": "【18】小明学英语",
+            "description": "<p>小明快要考托福了，这几天，小明每天早上都起来记英语单词。小红时不时地来考一考小明：小红会询问小明一个单词，如果小明背过这个单词，小明会告诉小红这个单词的意思，不然小明会跟小红说还没有背过。单词是由连续的大写或者小写字母组成。注意单词中字母大小写是等价的。比如You和you是一个单词。</p>",
+            "input_description": "<p>首先输入一个 n(1≤n≤100000) 表示事件数。接下来 n 行，每行表示一个事件。每个事件输入为一个整数 d 和一个单词 word（单词长度不大于 2020），用空格隔开。如果 d=0，表示小明记住了 word 这个单词，如果 d=1，表示这是一个测试，测试小明是否认识单词 word（小红永远不会告诉小明这个单词的意思）。事件的输入是按照时间先后顺序输入的。</p>",
+            "output_description": "<p>对于小红的每次测试，如果小明认识这个单词，输出一行Yes, 否则输出一行No。</p>",
+            "samples": [
+                {
+                    "input": "5\n0 we\n0 are\n1 family\n0 Family\n1 Family\n",
+                    "output": "No\nYes\n"
+                },
+                {
+                    "input": "4\n1 mengma\n0 Mengma\n0 MENGMA\n1 MengMa\n",
+                    "output": "No\nYes\n"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:32:20.710154Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 151,
+            "accepted_number": 84,
+            "statistic_info": {
+                "0": 84,
+                "4": 2,
+                "8": 7,
+                "-1": 41,
+                "-2": 17
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 419,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 1961,
+            "title": "【18】堆积木",
+            "description": "<p>小明有 n 块积木，编号分别为 1 到 n。一开始，蒜头把第 i 块积木放在位置 i。小明进行 m 次操作，每次操作，小明把位置 b 上的积木整体移动到位置 a 上面。比如 1 位置的积木是 1，2 位置的积木是 2，那么把位置 2 的积木移动到位置 1 后，位置 1 上的积木从下到上依次为 1,2。</p>",
+            "input_description": "<p>输入格式第一行输入 2 个整数n,m(1≤n≤10000,0≤m≤10000)。接下来 m 行，每行输入 2 个整数 a,b(1≤a,b≤n)，如果a，b 相等则本次不需要移动。</p>",
+            "output_description": "<p>输出 第 i 行输出位置 i 从下到上的积木编号，如果该行没有积木则不输出。</p>",
+            "samples": [
+                {
+                    "input": "2 2\n1 2\n1 2\n",
+                    "output": "1 2"
+                },
+                {
+                    "input": "4 4\n3 1\n4 3\n2 4\n2 2\n",
+                    "output": "2 4 3 1"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:32:32.008458Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 146,
+            "accepted_number": 85,
+            "statistic_info": {
+                "0": 85,
+                "3": 3,
+                "4": 1,
+                "8": 27,
+                "-1": 16,
+                "-2": 14
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 363,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 569,
+                "username": "黄家明",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2017,
+            "title": "【9】Checkout Assistant",
+            "description": "<p>Bob 来到一家现购自运商店，将 n 件商品放入了他的手推车，然后到收银台付款。每件商品由它的价格 pi 和收银员扫描它的时间 ti 秒定义。当收银员正在扫描某件商品时，Bob 可以从他的手推车中偷走某些其它商品。Bob 需要恰好 1 秒来偷走一件商品。Bob 需要付给收银员的最少钱数是多少？请记住，收银员扫描商品的顺序由 Bob 决定。</p>",
+            "input_description": "<p>第一行整数n代表物品数目</p><p>接下来n行每行两个整数ti, pi</p>",
+            "output_description": "<p>Bob 需要付给收银员的最少钱数</p>",
+            "samples": [
+                {
+                    "input": "4\n2 10\n0 20\n1 5\n1 3",
+                    "output": "8"
+                }
+            ],
+            "hint": "<ul><li>$1 \\le n \\le 2000$</li><li>$0 \\le t_i \\le 2000$</li><li>$1 \\le p_i \\le 10^9$</li></ul>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-18T04:14:42.598023Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 95,
+            "submission_number": 11,
+            "accepted_number": 3,
+            "statistic_info": {
+                "0": 3,
+                "-1": 1,
+                "-2": 7
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 1311,
+            "tags": [
+                "L2",
+                "练习"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2018,
+            "title": "【9】汽车费用",
+            "description": "<p>一个特别的单行街道在每公里处有一个汽车站。顾客根据他们乘坐汽车的公里使来付费。例如下表就是一个费用的单子。</p><p>没有一辆车子行驶超过10公里，一个顾客打算行驶n公里（1&lt;=n&lt;=100），它可以通过无限次的换车来完成旅程。最后要求费用最少。</p>",
+            "input_description": "<p>第一行十个整数分别表示行走1到10公里的费用（&lt;=500）。注意这些数并无实际的经济意义，即行驶10公里费用可能比行驶一公里少。</p><p>第二行一个整数n表示，旅客的总路程数。</p>",
+            "output_description": "<p>仅一个整数表示最少费用。<br /></p>",
+            "samples": [
+                {
+                    "input": "12 21 31 40 49 58 69 79 90 101\n15\n",
+                    "output": "147"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-11-08T13:13:49.702748Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 9,
+            "accepted_number": 5,
+            "statistic_info": {
+                "0": 5,
+                "4": 1,
+                "-2": 3
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 362,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 569,
+                "username": "黄家明",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2028,
+            "title": "【15】神奇的口袋",
+            "description": "<p>有一个神奇的口袋，总的容积是40，用这个口袋可以变出一些物品，这些物品的总体积必须是40。</p><p>John现在有n(1≤n ≤ 20)个想要得到的物品，每个物品 的体积分别是a1，a2......an。John可以从这些物品中选择一 些，如果选出的物体的总体积是40，那么利用这个神奇的口 袋，John就可以得到这些物品。现在的问题是，John有多少种不同的选择物品的方式。</p>",
+            "input_description": "<p>输入的第一行是正整数n (1 &lt;= n &lt;= 20)，表示不同的物品的 数目。接下来的n行，每行有一个1到40之间的正整数，分别 给出a1，a2......an的值。</p>",
+            "output_description": "<p>输出不同的选择物品的方式的数目。</p>",
+            "samples": [
+                {
+                    "input": "3\n20 20 20",
+                    "output": "3"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-18T04:02:54.593039Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 5,
+            "accepted_number": 5,
+            "statistic_info": {
+                "0": 5
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 364,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 569,
+                "username": "黄家明",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2161,
+            "title": "【8】Buy Low Buy Lower",
+            "description": "<p>“逢低吸纳”是炒股的一条成功秘诀。如果你想成为一个成功的投资者，就要遵守这条秘诀: &quot;逢低吸纳,越低越买&quot; 这句话的意思是:每次你购买股票时的股价一定要比你上次购买时的股价低.按照这个规则购买股票的次数越多越好，看看你<strong>最多能按这个规则买几次</strong>。</p><p>给定连续的 N 天中每天的股价。你可以在任何一天购买一次股票，但是购买时的股价一定要比你上次购买时的股价低。写一个程序，求出最多能买几次股票。 以下面这个表为例, 某几天的股价是:</p><p>| 天数 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |</p><p>| 股价 | 68 | 69 | 54 | 64 | 68 | 64 | 70 | 67 | 78 | 62 | 98 | 87 |</p><p>这个例子中, 聪明的投资者(按上面的定义)，如果每次买股票时的股价都比上一次买时低，那么他最 多能买 4 次股票。一种买法如下(可能有其他的买法):</p><p>| 天数 | 2 | 5 | 6 | 10 |</p><p>| 股价 | 69 | 68 | 64 | 62 |</p>",
+            "input_description": "<p>第 1 行: N (1 &lt;= N &lt;= 3000), 表示能买股票的天数。</p><p>第 2 行以下: N 个正整数 (可能分多行) ，第 i 个正整数表示第 i 天的股价.</p>",
+            "output_description": "<p>只有一行，输出两个整数:</p><p>能够买进股票的<strong>天数长度</strong>达到这个值的股票购买<strong>方案数量</strong>。在计算解的数量的时候，如果两个解所组成的字符串相同，那么这样的两个解被认为是相同的(只能算做一个解)。因此，两个不同的购买方案可能产生同一个字符串，这样只能计算一次。</p>",
+            "samples": [
+                {
+                    "input": "12\n68 69 54 64 68 64 70 67 78 62 98 87\n\n",
+                    "output": "4 2"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-18T06:12:41.291521Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 8,
+            "accepted_number": 3,
+            "statistic_info": {
+                "0": 3,
+                "4": 1,
+                "-1": 2,
+                "-2": 2
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 365,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 569,
+                "username": "黄家明",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2162,
+            "title": "【8】音量调节",
+            "description": "<p>一个吉他手准备参加一场演出。他不喜欢在演出时始终使用同一个音量，所以他决定每一首歌之前他都要改变一次音量。在演出开始之前，他已经做好了一个列表，里面写着在每首歌开始之前他想要改变的音量是多少。每一次改变音量，他可以选择调高也可以调低。音量用一个整数描述。输入文件中给定整数beginLevel，代表吉他刚开始的音量，以及整数maxLevel，代表吉他的最大音量。音量不能小于0也不能大于maxLevel。输入文件中还给定了n个整数c1,c2,c3…..cn，表示在第i首歌开始之前吉他手想要改变的音量是多少。吉他手想以最大的音量演奏最后一首歌，你的任务是找到这个最大音量是多少。</p>",
+            "input_description": "<p>第一行依次为三个整数：n, beginLevel, maxlevel。第二行依次为n个整数：c1,c2,c3…..cn。</p>",
+            "output_description": "<p>输出演奏最后一首歌的最大音量。如果吉他手无法避免音量低于0或者高于maxLevel，输出-1。</p>",
+            "samples": [
+                {
+                    "input": "3 5 10\n5 3 7",
+                    "output": "10"
+                }
+            ],
+            "hint": "<p>1&lt;=n&lt;=50,</p><p>1&lt;ci&lt;=Maxlevel</p><p>1&lt;=maxlevel&lt;=1000</p><p>0&lt;=beginlevel&lt;=maxlevel</p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-18T06:28:51.331277Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 46,
+            "accepted_number": 6,
+            "statistic_info": {
+                "0": 6,
+                "8": 16,
+                "-1": 3,
+                "-2": 21
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 406,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 568,
+                "username": "李超",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2163,
+            "title": "机器人走方格",
+            "description": "<p>M * N的方格，一个机器人从左上走到右下，只能向右或向下走。有多少种不同的走法？由于方法数量可能很大，只需要输出Mod 10^9 + 7的结果<br /></p>",
+            "input_description": "<pre>第1行，2个数M,N，中间用空格隔开。（2 &lt;= m,n &lt;= 1000)</pre>",
+            "output_description": "<pre>输出走法的数量。</pre>",
+            "samples": [
+                {
+                    "input": "2 3",
+                    "output": "3"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T05:21:01.519054Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 135,
+            "accepted_number": 50,
+            "statistic_info": {
+                "0": 50,
+                "1": 8,
+                "4": 7,
+                "-1": 34,
+                "-2": 34
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 310,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 568,
+                "username": "李超",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2164,
+            "title": "【8】最大子段和",
+            "description": "<p>给出一段序列，选出其中连续且非空的一段使得这段和最大。</p>",
+            "input_description": "<p>第一行是一个正整数N，表示了序列的长度。(1&lt;=N&lt;=200000)</p><p>第二行包含N个绝对值不大于10000的整数Ai ，描述了这段序列。</p>",
+            "output_description": "<p>一个整数，为最大的子段和是多少。子段的最小长度为1。</p>",
+            "samples": [
+                {
+                    "input": "7\n2 -4 3 -1 2 -4 3",
+                    "output": "4"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-15T07:52:12.723582Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 104,
+            "accepted_number": 54,
+            "statistic_info": {
+                "0": 54,
+                "1": 4,
+                "4": 12,
+                "8": 15,
+                "-1": 12,
+                "-2": 7
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": 0
+        },
+        {
+            "id": 579,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2165,
+            "title": "【8】友好城市",
+            "description": "<p>Palmia国有一条横贯东西的大河，河有笔直的南北两岸，岸上各有位置各不相同的N个城市。北岸的每个城市有且仅有一个友好城市在南岸，而且不同城市的友好城市不相同。</p><p>每对友好城市都向政府申请在河上开辟一条直线航道连接两个城市，但是由于河上雾太大，政府决定避免任意两条航道交叉，以避免事故。编程帮助政府做出一些批准和拒绝申请的决定，使得在保证任意两条航线不相交的情况下，被批准的申请尽量多。</p>",
+            "input_description": "<p>第1行，一个整数N(1&lt;=N&lt;=5000)，表示城市数。</p><p>第2行到第n+1行，每行两个整数，中间用1个空格隔开，分别表示南岸和北岸的一对友好城市的坐标。(0&lt;=xi&lt;=10000)</p>",
+            "output_description": "<p>仅一行，输出一个整数，表示政府所能批准的最多申请数。<br /></p>",
+            "samples": [
+                {
+                    "input": "7\n22 4\n2 6\n10 3\n15 12\n9 8\n17 17\n4 2",
+                    "output": "4"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-28T02:33:16.341069Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 34,
+            "accepted_number": 14,
+            "statistic_info": {
+                "0": 14,
+                "8": 15,
+                "-1": 4,
+                "-2": 1
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 580,
+            "tags": [
+                "L2",
+                "动态规划"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2166,
+            "title": "【8】合唱队形",
+            "description": "<p>N位同学站成一排，音乐老师要请其中的(N-K)位同学出列，使得剩下的K位同学排成合唱队形。</p><p>合唱队形是指这样的一种队形：设K位同学从左到右依次编号为1, 2, …, K，他们的身高分别为T1, T2, …, TK，则他们的身高满足T1 &lt; T2 &lt; … &lt; Ti , Ti &gt; Ti+1 &gt; … &gt; TK (1≤i≤K)。</p><p>你的任务是，已知所有N位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。</p>",
+            "input_description": "<p>第一行是一个整数N（2 ≤ N ≤ 100），表示同学的总数。第二行有n个整数，用空格分隔，第i个整数Ti（130 ≤ Ti ≤ 230）是第i位同学的身高（厘米）。<br /></p>",
+            "output_description": "<p>一行，这一行只包含一个整数，就是最少需要几位同学出列。<br /></p>",
+            "samples": [
+                {
+                    "input": "8\n186 186 150 200 160 130 197 220",
+                    "output": "4"
+                }
+            ],
+            "hint": "<p>对于50%的数据，保证有n ≤ 20；对于全部的数据，保证有n≤100。<br /></p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-28T02:37:18.712282Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 24,
+            "accepted_number": 13,
+            "statistic_info": {
+                "0": 13,
+                "8": 7,
+                "-1": 1,
+                "-2": 3
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 1448,
+            "tags": [
+                "L2",
+                "LCIS"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2167,
+            "title": "【8】神秘的咒语",
+            "description": "<p>身为拜月教的高级间谍，你的任务总是逼迫你出生入死。比如这一次，拜月教主就派你跟踪赵灵儿一行，潜入试炼窟底。</p><p>据说试炼窟底藏着五行法术的最高法术：风神，雷神，雪妖，火神，山神的咒语。为了习得这些法术，要付出艰辛的努力，但是回报同样十分丰厚。</p><p>拜月希望你告诉他咒语的长度为多少。（你：“请问您想知道咒语的具体内容吗？”拜月：“想，但是vijos不支持special judge。”-_-原来大人物也有大人物的悲哀。。。）<br />于是你偷偷躲在一边，想乘机看看咒语究竟是什么。突然，天空（？？试炼窟底看的到天空？？）出现了两条非常长的数字串，你抓狂了。究竟哪个才是真正的咒语呢？你突然想到，这两个都不是咒语（不妨称之为伪咒语），而真正的咒语却与他们有着密切的联系。于是你打开拜月亲手给你写的纸条：&quot;The Real Incantation is Their Common Increasing Subsequence of Maximal Possible Length&quot;<br />&quot;该死的拜月，居然还会E文!&quot;你咒骂着，但为了一家老小的生命，又不得不卖命地算着咒语的长度。</p>",
+            "input_description": "<p>第一行为1个数N,代表有N组测试数据。</p><p>对于每组测试数据，描述了两条数字串，首先一个数字为一条伪咒语的长度M，接下来M个数描述了伪咒语的内容。</p>",
+            "output_description": "<p>共N行，每行一个数字，描叙了对应咒语的长度。<br /></p>",
+            "samples": [
+                {
+                    "input": "1\n5 1 4 2 5 -12\n4 -12 1 2 4\n",
+                    "output": "2"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-12-11T02:11:49.603294Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 36,
+            "accepted_number": 8,
+            "statistic_info": {
+                "0": 8,
+                "8": 20,
+                "-1": 3,
+                "-2": 5
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 1449,
+            "tags": [
+                "L2",
+                "LCIS"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2168,
+            "title": "【8】最长公共上升子序列",
+            "description": "<p>熊大妈的奶牛在小沐沐的熏陶下开始研究信息题目。小沐沐先让奶牛研究了最长上升子序列，再让他们研究了最长公共子序列，现在又让他们要研究最长公共上升子序列了。</p><p>小沐沐说，对于两个串A，B，如果它们都包含一段位置不一定连续的数字，且数字是严格递增的，那么称这一段数字是两个串的公共上升子串，而所有的公共上升子串中最长的就是最长公共上升子串了。</p><p>奶牛半懂不懂，小沐沐要你来告诉奶牛什么是最长公共上升子串。不过，只要告诉奶牛它的长度就可以了。</p>",
+            "input_description": "<p>第一行N，表示A，B的长度。</p><p>第二行，串A。</p><p>第三行，串B。</p>",
+            "output_description": "<p>输出长度。<br /></p>",
+            "samples": [
+                {
+                    "input": "4\n2 2 1 3\n2 1 2 3\n",
+                    "output": "2"
+                }
+            ],
+            "hint": "<p>1&lt;=N&lt;=3000，A，B中的数字不超过maxlongint<br /></p>",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-12-11T02:22:54.434934Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 55,
+            "accepted_number": 25,
+            "statistic_info": {
+                "0": 25,
+                "8": 18,
+                "-1": 7,
+                "-2": 5
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 1459,
+            "tags": [
+                "L2",
+                "子矩阵"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2169,
+            "title": "【8】最大子矩阵和",
+            "description": "<p>已知矩阵的大小定义为矩阵中所有元素的和。给定一个矩阵，你的任务是找到最大的非空(大小至少是1 × 1)子矩阵。<br /><br /></p>",
+            "input_description": "<p>输入是一个N×N的矩阵。</p><p>输入的第一行给出N(0&lt;N≤100)。再后面的若干行中，依次(首先从左到右给出第一行的N个整数，再从左到右给出第二行的N个整数……)给出矩阵中的N2个整数，整数之间由空白字符分隔(空格或者空行)。已知矩阵中整数的范围都在[−127,127]。</p>",
+            "output_description": "<p>输出最大子矩阵的大小。<br /><br /></p>",
+            "samples": [
+                {
+                    "input": "4\n0 -2 -7  0\n9  2 -6  2\n-4  1 -4  1\n-1  8  0 -2",
+                    "output": "15"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-12-18T02:36:02.443750Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 43,
+            "accepted_number": 20,
+            "statistic_info": {
+                "0": 20,
+                "3": 7,
+                "4": 1,
+                "8": 3,
+                "-1": 10,
+                "-2": 2
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 416,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 1,
+                "username": "root",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2306,
+            "title": "【4】阶乘和",
+            "description": "<p>用高精度计算出S=1!+2!+3!+…+n!（n≤50）,其中“!”表示阶乘，例如：5!=5×4×3×2×1。</p><p>输入正整数n，输出计算结果S。</p>",
+            "input_description": "<p>一个正整数n。</p>",
+            "output_description": "<p>计算结果S。</p>",
+            "samples": [
+                {
+                    "input": "5",
+                    "output": "153"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-07-24T07:31:28.519017Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 131,
+            "accepted_number": 54,
+            "statistic_info": {
+                "0": 54,
+                "4": 2,
+                "8": 50,
+                "-1": 10,
+                "-2": 15
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 132,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2352,
+            "title": "【5】约瑟夫环",
+            "description": "<p>n个人站成一圈，从某个人开始数数，每次数到m的人就被杀掉，然后下一个人重新开始数，直到最后只剩一个人。现在有一圈人，k个好人站在一起，k个坏人站在一起。从第一个好人开始数数。你要确定一个最小的m，使得在第一个好人被杀死前，k个坏人先被杀死。</p>",
+            "input_description": "<p>一个k(0&lt;k&lt;14)</p>",
+            "output_description": "<p>一个m</p>",
+            "samples": [
+                {
+                    "input": "3",
+                    "output": "5"
+                },
+                {
+                    "input": "4",
+                    "output": "30"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:11:37.566643Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 99,
+            "submission_number": 226,
+            "accepted_number": 137,
+            "statistic_info": {
+                "0": 137,
+                "1": 21,
+                "4": 2,
+                "8": 17,
+                "-1": 16,
+                "-2": 33
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 133,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2451,
+            "title": "【6】括号匹配",
+            "description": "<p>假设一个字符串中包含圆括号，方括号，花括号3种类型的括号，编写一个算法来判别表达式中的括号是否匹配,匹配则输出&quot;Yes&quot;,不匹配则输出&quot;No&quot;。</p>",
+            "input_description": "<p>一个包含圆括号，方括号，花括号的字符串。</p>",
+            "output_description": "<p>Yes或者No</p>",
+            "samples": [
+                {
+                    "input": "{}[]()",
+                    "output": "Yes"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:11:54.111747Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 309,
+            "accepted_number": 118,
+            "statistic_info": {
+                "0": 118,
+                "2": 3,
+                "4": 7,
+                "8": 98,
+                "-1": 50,
+                "-2": 33
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        },
+        {
+            "id": 134,
+            "tags": [
+                "L2"
+            ],
+            "created_by": {
+                "id": 2,
+                "username": "newkey",
+                "real_name": null
+            },
+            "template": {},
+            "_id": 2453,
+            "title": "【6】后缀表达式的值",
+            "description": "<p>从键盘读入一个后缀表达式（字符串），只含有0-9组成的运算数及加（+）、减（—）、乘（）、除（/）四种运算符。每个运算数之间用一个空格隔开，不需要判断给你的表达式是否合法（我们保证一定合法）。以@作为结束标志。比如，16–9(4+3)转换成后缀表达式为16 9 4 3 +*-</p>",
+            "input_description": "<p>一个后缀表达式</p>",
+            "output_description": "<p>表达式的值</p>",
+            "samples": [
+                {
+                    "input": "16 9 4 3 +*-@",
+                    "output": "-47"
+                }
+            ],
+            "hint": "",
+            "languages": [
+                "C++"
+            ],
+            "create_time": "2019-05-15T12:11:59.625711Z",
+            "last_update_time": null,
+            "time_limit": 1000,
+            "memory_limit": 256,
+            "io_mode": {
+                "input": "input.txt",
+                "output": "output.txt",
+                "io_mode": "Standard IO"
+            },
+            "spj": false,
+            "spj_language": null,
+            "rule_type": "OI",
+            "difficulty": "Low",
+            "source": "",
+            "total_score": 100,
+            "submission_number": 210,
+            "accepted_number": 107,
+            "statistic_info": {
+                "0": 107,
+                "1": 2,
+                "3": 1,
+                "4": 8,
+                "8": 28,
+                "-1": 22,
+                "-2": 42
+            },
+            "share_submission": false,
+            "contest": null,
+            "my_status": null
+        }
+    ],
+    "total": 37
+}
