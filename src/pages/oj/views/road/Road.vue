@@ -1,30 +1,69 @@
 <template>
+  <div class="flex-container">
+    <div id="problem-main">
+      <!--problem main-->
+      <Panel :padding="40" shadow>
+        <div slot="title">{{problem.title}}</div>
+        <div id="problem-content" class="markdown-body" v-katex>
+          <p class="title">{{$t('m.Description')}}</p>
+          <p class="content" v-html=problem.description></p>
+          <!-- {{$t('m.music')}} -->
+          <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
+          <p class="content" v-html=problem.input_description></p>
 
-  <div class="//flex-container">
-    <Row :gutter="12">
-        <Col span="12">
-    <Card class="bookcard" >
-      <someBook :url="bookUrl">
-      </someBook>
-    </Card>
-        </Col>
-        <Col span="12">
-      <Card :padding="20" id="submit-code" dis-hover class="bookcard" >
-        <CodeMirror2 :value.sync="code"
+          <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
+          <p class="content" v-html=problem.output_description></p>
+
+          <div v-for="(sample, index) of problem.samples" :key="index">
+            <div class="flex-container sample">
+              <div class="sample-input">
+                <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}
+                  <a class="copy"
+                     v-clipboard:copy="sample.input"
+                     v-clipboard:success="onCopy"
+                     v-clipboard:error="onCopyError">
+                    <Icon type="clipboard"></Icon>
+                  </a>
+                </p>
+                <pre>{{sample.input}}</pre>
+              </div>
+              <div class="sample-output">
+                <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}</p>
+                <pre>{{sample.output}}</pre>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="problem.hint">
+            <p class="title">{{$t('m.Hint')}}</p>
+            <Card dis-hover>
+              <div class="content" v-html=problem.hint></div>
+            </Card>
+          </div>
+
+          <div v-if="problem.source">
+            <p class="title">{{$t('m.Source')}}</p>
+            <p class="content">{{problem.source}}</p>
+          </div>
+
+        </div>
+      </Panel>
+      <!--problem main end-->
+      <Card :padding="20" id="submit-code" dis-hover>
+        <CodeMirror :value.sync="code"
                     :languages="problem.languages"
                     :language="language"
                     :theme="theme"
                     @resetCode="onResetToTemplate"
                     @changeTheme="onChangeTheme"
-                    @changeLang="onChangeLang"
-                    calss="CodeMirror2"></CodeMirror2>
+                    @changeLang="onChangeLang"></CodeMirror>
         <Row type="flex" justify="space-between">
           <Col :span="10">
             <div class="status" v-if="statusVisible">
               <template v-if="!this.contestID || (this.contestID && OIContestRealTimePermission)">
                 <span>{{$t('m.Status')}}</span>
                 <Tag type="dot" :color="submissionStatus.color" @click.native="handleRoute('/status/'+submissionId)">
-                  {{$t('m.' + submissionStatus.text.replace(/ /g, "_"))}}
+                  {{$t('m.' + submissionStatus.text.replace(/ + /g, "_"))}}
                 </Tag>
               </template>
               <template v-else-if="this.contestID && !OIContestRealTimePermission">
@@ -43,72 +82,129 @@
           </Col>
 
           <Col :span="9">
-            <!-- <template v-if="captchaRequired">
-              <div class="captcha-container">
-                <Tooltip v-if="captchaRequired" content="Click to refresh" placement="top">
-                  <img :src="captchaSrc" @click="getCaptchaSrc"/>
-                </Tooltip>
-                <Input v-model="captchaCode" class="captcha-code"/>
-              </div>
-            </template> -->
-
             <Button type="success" icon="chevron-right" @click="toNextProblem"
-                    :disabled="problem.my_status != 0"
+                    :disabled="problem.my_status != 0 || nextProblemID === -1"
                     class="fl-right"
                     :route="submissionRoute">
-              <span v-if="problem.my_status === 0">{{$t('下一题')}}</span>
+              <span v-if="nextProblemID === -1" >{{'没有啦~'}}</span>
+              <span v-else-if="problem.my_status === 0">{{'下一题'}}</span>
               <span v-else>{{$t('未完成')}}</span>
             </Button>
             </Col>
 
-            <Col :span="3"> 
+          <Col :span="3"> 
             <Button type="warning" icon="edit" :loading="submitting" @click="submitCode"
-                    :disabled="problemSubmitDisabled || submitted"
+                    :disabled="problemSubmitDisabled || submitted || problem.my_status === 0"
                     class="fl-right">
               <span v-if="submitting">{{$t('m.Submitting')}}</span>
+              <span v-else-if="problem.my_status === 0">{{"已经通过了哦~"}}</span>
               <span v-else>{{$t('m.Submit')}}</span>
             </Button>
           </Col>
         </Row>
       </Card>
-      </Col>
-    </Row>
+    </div>
+
+    <div id="right-column">
+      <VerticalMenu @on-click="handleRoute">
+        <template v-if="this.contestID">
+          <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
+            <Icon type="ios-photos"></Icon>
+            {{$t('m.Problems')}}
+          </VerticalMenu-item>
+
+          <VerticalMenu-item :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
+            <Icon type="chatbubble-working"></Icon>
+            {{$t('m.Announcements')}}
+          </VerticalMenu-item>
+        </template>
+
+        <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
+          <Icon type="navicon-round"></Icon>
+           {{$t('m.Submissions')}}
+        </VerticalMenu-item>
+
+        <template v-if="this.contestID">
+          <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission"
+                             :route="{name: 'contest-rank', params: {contestID: contestID}}">
+            <Icon type="stats-bars"></Icon>
+            {{$t('m.Rankings')}}
+          </VerticalMenu-item>
+          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
+            <Icon type="home"></Icon>
+            {{$t('m.View_Contest')}}
+          </VerticalMenu-item>
+        </template>
+      </VerticalMenu>
+
+      <Card id="info">
+        <div slot="title" class="header">
+          <Icon type="information-circled"></Icon>
+          <span class="card-title">{{$t('m.Information')}}</span>
+        </div>
+        <ul>
+          <li><p>ID</p>
+            <p>{{problem._id}}</p></li>
+          <li>
+            <p>{{$t('m.Time_Limit')}}</p>
+            <p>{{problem.time_limit}}MS</p></li>
+          <li>
+            <p>{{$t('m.Memory_Limit')}}</p>
+            <p>{{problem.memory_limit}}MB</p></li>
+          <li>
+          <li>
+            <p>{{$t('m.IOMode')}}</p>
+            <p>{{problem.io_mode.io_mode}}</p>
+          </li>
+          <li>
+            <p>{{$t('m.Created')}}</p>
+            <p>{{problem.created_by.username}}</p></li>
+          <li v-if="problem.difficulty">
+            <p>{{$t('m.Level')}}</p>
+            <p>{{$t('m.' + problem.difficulty)}}</p></li>
+          <li v-if="problem.total_score">
+            <p>{{$t('m.Score')}}</p>
+            <p>{{problem.total_score}}</p>
+          </li>
+          <li>
+            <p>{{$t('m.Tags')}}</p>
+            <p>
+              <Poptip trigger="hover" placement="left-end">
+                <a>{{$t('m.Show')}}</a>
+                <div slot="content">
+                  <Tag v-for="tag in problem.tags" :key="tag">{{tag}}</Tag>
+                </div>
+              </Poptip>
+            </p>
+          </li>
+        </ul>
+      </Card>
+    </div>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import {types} from '../../../../store'
-  import CodeMirror2 from '@oj/components/CodeMirror2.vue'
+  import CodeMirror from '@oj/components/CodeMirror.vue'
   import storage from '@/utils/storage'
   import {FormMixin} from '@oj/components/mixins'
   import {JUDGE_STATUS, CONTEST_STATUS, buildProblemCodeKey} from '@/utils/constants'
   import api from '@oj/api'
-  import {pie, largePie} from './chartData'
-  import Book from '@oj/components/add/Book.vue'
-  import someBook from '@oj/components/add/someBook.vue'
-  import roadlist from './roadlist.json'
+  import testdata from './testdata.json'
 
   export default {
     name: 'Problem',
     components: {
-      CodeMirror2,
-      Book,
-      someBook
+      CodeMirror
     },
     mixins: [FormMixin],
     data () {
       return {
-        bookUrl: '',
         statusVisible: false,
-        captchaRequired: false,
-        graphVisible: false,
         submissionExists: false,
-        captchaCode: '',
-        captchaSrc: '',
         contestID: '',
         problemID: '',
-        randomNumber: '',
         submitting: false,
         code: '',
         language: 'C++',
@@ -131,13 +227,7 @@
           tags: [],
           io_mode: {'io_mode': 'Standard IO'}
         },
-        pie: pie,
-        largePie: largePie,
-        // echarts 无法获取隐藏dom的大小，需手动指定
-        largePieInitOpts: {
-          width: '500',
-          height: '480'
-        }
+        nextProblemID: 0
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -160,31 +250,18 @@
       ...mapActions(['changeDomTitle']),
       init () {
         this.$Loading.start()
-        // api.getUserInfo(this.username).then(res => {
-        // //   console.log(res.data)
-        // //   console.log(res)
-        // })
         this.contestID = this.$route.params.contestID
         this.problemID = window.atob(this.$route.params.roadID)
-        if (this.checkRoad() === false) {
-            this.$Loading.finish()
-            this.$router.go(-1)
-        }
-        this.bookUrl = '../../../../../static/html/' + this.problemID + '.html'
-        // console.log(this.problemID)
         let func = this.$route.name === 'road-details' ? 'getProblem' : 'getContestProblem'
         api[func](this.problemID, this.contestID).then(res => {
           this.$Loading.finish()
           let problem = res.data.data
-        //   console.log(problem)
           this.changeDomTitle({title: problem.title})
           api.submissionExists(problem.id).then(res => {
             this.submissionExists = res.data.data
           })
           problem.languages = problem.languages.sort()
           this.problem = problem
-        //   this.changePie(problem)
-
           // 在beforeRouteEnter中修改了, 说明本地有code，无需加载template
           if (this.code !== '') {
             return
@@ -195,11 +272,44 @@
           if (template && template[this.language]) {
             this.code = template[this.language]
           }
+          this.nextProblemID = this.getNextProblemId(this.problemID)
         }, () => {
           this.$Loading.error()
         })
       },
-
+      toNextProblem () {
+        if (this.nextProblemID === -1) {
+          return
+        }
+        this.$router.push({name: 'road-details', params: {roadID: window.btoa(this.nextProblemID)}})
+      },
+      getNextProblemId (ID) {
+        var leni = this.problem.tags.length
+        var lenj = testdata.length
+        var NowTagProblemList = null
+        for (var i = 0; i < leni; i++) {
+          for (var j = 0; j < lenj; j++) {
+            if (testdata[j].listTag === this.problem.tags[i]) {
+              NowTagProblemList = testdata[j].data
+              break
+            }
+          }
+          if (NowTagProblemList !== null) {
+            break
+          }
+        }
+        var dataLen = NowTagProblemList.length
+        var NextID = -1
+        for (var k = 0; k < dataLen; k++) {
+          if (NowTagProblemList[k]._id === parseInt(ID)) {
+            if (k !== dataLen - 1) {
+              NextID = NowTagProblemList[k + 1]._id
+              break
+            }
+          }
+        }
+        return NextID
+      },
       handleRoute (route) {
         this.$router.push(route)
       },
@@ -251,51 +361,6 @@
           })
         }
         this.refreshStatus = setTimeout(checkStatus, 2000)
-      },
-      checkRoad () {
-        // 检查合法性
-        if (parseInt(this.problemID) === roadlist[0]) {
-            this.$Loading.error()
-            return true
-        }
-        var len = roadlist.length
-        var flag = false
-        for (var i = 0; i < len; i++) {
-            if (roadlist[i] === parseInt(this.problemID)) {
-                flag = true
-                api['getProblem'](roadlist[i - 1] + '', this.contestID).then(res => {
-                    if (res.data.data.my_status === null) {
-                        flag = true
-                    }
-                }, () => {
-                  this.$Loading.error()
-                })
-                break
-            }
-        }
-        return flag
-      },
-      toNextProblem () {
-        // this.$router.push({name: 'road-details', params: {roadID: parseInt(this.problemID) + 1 + 12906147}})
-        // this.$router.push({name: 'submission-list', query: {problemID: this.problemID}})
-        var len = roadlist.length
-        var nextProblem = -1
-        for (var i = 0; i < len; i++) {
-            // console.log(typeof roadlist[i])
-            if (roadlist[i] === parseInt(this.problemID)) {
-                if (i !== len - 1) {
-                    nextProblem = roadlist[i + 1]
-                    break
-                } else {
-                    break
-                }
-            }
-        }
-        if (nextProblem === -1) {
-            this.$error(this.$i18n.t('没有啦！'))
-            return
-        }
-        this.$router.push({name: 'road-details', params: {roadID: window.btoa(nextProblem)}})
       },
       submitCode () {
         if (this.code.trim() === '') {
@@ -416,16 +481,16 @@
     margin-left: 8px;
   }
 
-//   .flex-container {
-//     #problem-main {
-//       flex: auto;
-//       margin-right: 18px;
-//     }
-//     #right-column {
-//       flex: none;
-//       width: 220px;
-//     }
-//   }
+  .flex-container {
+    #problem-main {
+      flex: auto;
+      margin-right: 18px;
+    }
+    #right-column {
+      flex: none;
+      width: 220px;
+    }
+  }
 
   #problem-content {
     margin-top: -50px;
@@ -462,8 +527,8 @@
   }
 
   #submit-code {
-    // margin-top: 20px;
-    // margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     .status {
       float: left;
       span {
@@ -471,78 +536,57 @@
         margin-left: 10px;
       }
     }
-    // .captcha-container {
-    //   display: inline-block;
-    //   .captcha-code {
-    //     width: auto;
-    //     margin-top: -20px;
-    //     margin-left: 20px;
-    //   }
-    // }
+    .captcha-container {
+      display: inline-block;
+      .captcha-code {
+        width: auto;
+        margin-top: -20px;
+        margin-left: 20px;
+      }
+    }
   }
 
-//   #info {
-//     margin-bottom: 20px;
-//     margin-top: 20px;
-//     ul {
-//       list-style-type: none;
-//       li {
-//         border-bottom: 1px dotted #e9eaec;
-//         margin-bottom: 10px;
-//         p {
-//           display: inline-block;
-//         }
-//         p:first-child {
-//           width: 90px;
-//         }
-//         p:last-child {
-//           float: right;
-//         }
-//       }
-//     }
-//   }
+  #info {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    ul {
+      list-style-type: none;
+      li {
+        border-bottom: 1px dotted #e9eaec;
+        margin-bottom: 10px;
+        p {
+          display: inline-block;
+        }
+        p:first-child {
+          width: 90px;
+        }
+        p:last-child {
+          float: right;
+        }
+      }
+    }
+  }
 
   .fl-right {
     float: right;
   }
 
-  .fl-left {
-    float: left;
+  #pieChart {
+    .echarts {
+      height: 250px;
+      width: 210px;
+    }
+    #detail {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
   }
 
-//   #pieChart {
-//     .echarts {
-//       height: 250px;
-//       width: 210px;
-//     }
-//     #detail {
-//       position: absolute;
-//       right: 10px;
-//       top: 10px;
-//     }
-//   }
-
-//   #pieChart-detail {
-//     margin-top: 20px;
-//     width: 500px;
-//     height: 480px;
-//   }
-
-  .bookcard{
-    margin-top: 0px;
-    // margin-bottom: 0px;
-    height: 100%;
-    width: 100%;
-    // overflow:scroll;
+  #pieChart-detail {
+    margin-top: 20px;
+    width: 500px;
+    height: 480px;
   }
-
-  
-</style>
-
-<style>
-.CodeMirror-scroll{
-        min-height: 10px;
-        max-height: 11000px;
-}
 </style>
 

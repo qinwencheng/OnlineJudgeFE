@@ -13,6 +13,7 @@ import emitter from '../../components/mixins/emitter'
         data () {
             return {
                 mdata: [],
+                tempdata: [],
                 columns10: [
                     {
                         type: 'expand',
@@ -26,8 +27,39 @@ import emitter from '../../components/mixins/emitter'
                         }
                     },
                     {
-                      title: '关卡',
+                      title: '段位',
                       key: 'listName'
+                    },
+                    {
+                        title: '完成进度',
+                        // key: 'listTag',
+                        // width: 10,
+                        render: (h, params) => {
+                          let AC = params.row.acPercent
+                          let acNumber = params.row.acNumber
+                          let problemLength = params.row.problemLength
+                          // if (AC === 100) {
+                          //   Nowstatus = 'success'
+                          // } else if (AC < 31) {
+                          //   Nowstatus = 'wrong'
+                          // } else {
+                          //   Nowstatus = 'normal'
+                          // }
+                          let str = acNumber + '/' + problemLength
+                          return h('i-progress', {
+                            props: {
+                              percent: AC,
+                              size: 60,
+                              // status: Nowstatus,
+                              'hide-info': false
+                            },
+                            style: {
+                              // overflowX: 'auto',
+                              // textAlign: 'left',
+                              // width: '100%'
+                            }
+                          }, str)
+                        }
                     }
                     // {
                     //   title: '#',
@@ -93,7 +125,7 @@ import emitter from '../../components/mixins/emitter'
             this.initListInfo()
           },
           initListInfo () {
-            async function fn (query, mdata) {
+            async function fn (query, tempdata) {
               let offset = 0
               let len = problemlist.length
               for (var i = 0; i < len; i++) {
@@ -103,18 +135,22 @@ import emitter from '../../components/mixins/emitter'
                     api.getProblemList(offset, query.limit, query).then(res => {
                       var pld = problemlist[i]
                       pld.data = (res.data.data.results)
-                      mdata.push(pld)
+                      tempdata.push(pld)
                       resolve()
                     })
                   })
                 }())
               }
             }
-            fn(this.query, this.mdata).then(res => {
+            fn(this.query, this.tempdata).then(res => {
+              // this.loadings = true
+              this.mdata = this.tempdata
+              // console.log(this.mdata)
               this.getListProblemStatus()
+              this.getAcPercent()
               this.loadings = false
-            }
-            )
+              console.log(this.mdata)
+            })
           },
           getListProblemStatus () {
             // this.mdata[0]._expanded = false
@@ -154,8 +190,22 @@ import emitter from '../../components/mixins/emitter'
             })
             // console.log(ans)
             return ans
+          },
+          getAcPercent () {
+            var len = this.mdata.length
+            var problemLength = 0
+            var acNumber = 0
+            var acPercent = 0
+            for (var i = 0; i < len; i++) {
+              problemLength = this.mdata[i].data.length
+              acNumber = this.filterByAccpet(this.mdata[i].data).length
+              acPercent = acNumber * 100 / problemLength
+              acPercent = Math.round(acPercent)
+              this.mdata[i].acNumber = acNumber
+              this.mdata[i].acPercent = acPercent
+              this.mdata[i].problemLength = problemLength
+            }
           }
         }
     }
 </script>
-

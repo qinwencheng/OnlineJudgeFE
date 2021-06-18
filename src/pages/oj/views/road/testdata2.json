@@ -1,30 +1,72 @@
 [
     {
-        "listName": "111",
+        "listName": "倔强青铜",
         "data": "",
-        "listTag": "L1",
+        "listTag": "SPJ",
         "_expanded": false,
-        "_disableExpand": false
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
     },
     {
-        "listName": "222",
+        "listName": "白银",
         "data": "",
         "listTag": "L2",
         "_expanded": false,
-        "_disableExpand": false
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
     },
     {
-        "listName": "333",
+        "listName": "黄金",
         "data": "4",
         "listTag": "循环",
         "_expanded": false,
-        "_disableExpand": false
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
     },
     {
-        "listName": "333",
+        "listName": "铂金",
         "data": "",
         "listTag": "二维数组",
         "_expanded": false,
-        "_disableExpand": false
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
+    },
+    {
+        "listName": "钻石",
+        "data": "",
+        "listTag": "二维数组",
+        "_expanded": false,
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
+    },
+    {
+        "listName": "星耀",
+        "data": "",
+        "listTag": "二维数组",
+        "_expanded": false,
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
+    },
+    {
+        "listName": "最强王者",
+        "data": "",
+        "listTag": "二维数组",
+        "_expanded": false,
+        "_disableExpand": false,
+        "acPercent": 0,
+        "problemLength": 0,
+        "acNumber": 0
     }
 ]

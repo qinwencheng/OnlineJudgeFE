@@ -83,10 +83,9 @@
         // console.log(this.row)
         this.routeName = this.$route.name
         this.getProblemList()
-        console.log(this.row)
       },
       getProblemList () {
-          this.problemList = this.filterByAccpet(this.row.data)
+          this.problemList = this.row.data
         //   console.log(this.problemList)
           if (this.isAuthenticated) {
             this.addStatusColumn(this.problemTableColumns, this.problemList)
